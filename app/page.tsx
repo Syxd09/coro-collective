@@ -2,62 +2,435 @@
 
 import { useEffect, useState } from "react";
 import { Footer } from "./components/Footer";
+import { ProjectsSection } from "./components/ProjectsSection";
+import { MATERIALS_DATA, STUDIO_INFO, MaterialItem } from "./data/materialsData";
+import { useSampleBox } from "./context/SampleBoxContext";
 
 const heroImages = [
   "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2000&q=90",
   "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2000&q=90",
   "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=90",
-  "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=2000&q=90"
-];
-
-const collections = [
-  { name: "Tessera™", type: "Layered surfaces", image: "https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=1000&q=85", tone: "clay" },
-  { name: "Poroso™", type: "Spatial screens", image: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1000&q=85", tone: "mesh" },
-  { name: "Fresco™", type: "Outdoor living", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=85", tone: "green" },
-  { name: "Aria™", type: "Acoustic architecture", image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=85", tone: "felt" },
-  { name: "Planko™", type: "Grounded flooring", image: "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=1000&q=85", tone: "wood" },
-  { name: "Rocco™", type: "Bespoke surfaces", image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1000&q=85", tone: "stone" },
-];
-
-const materialOptions = [
-  { id: "rocco", label: "Rocco", note: "seamless solid surface", className: "rocco" },
-  { id: "tessera", label: "Tessera", note: "tile & terrazzo", className: "tessera" },
-  { id: "poroso", label: "Poroso", note: "architectural mesh", className: "poroso" },
-  { id: "aria", label: "Aria", note: "acoustic felt", className: "aria" },
+  "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=2000&q=90",
 ];
 
 export default function Home() {
-  const [material, setMaterial] = useState(materialOptions[0]);
+  const [selectedMaterial, setSelectedMaterial] = useState<MaterialItem>(
+    MATERIALS_DATA[0]
+  );
+  const [selectedFinish, setSelectedFinish] = useState<string>(
+    MATERIALS_DATA[0].finishes[0]
+  );
   const [scene, setScene] = useState("Hospitality");
+  const [lightingMode, setLightingMode] = useState<"daylight" | "warm">(
+    "daylight"
+  );
   const [heroIndex, setHeroIndex] = useState(0);
-  useEffect(() => { const timer = window.setInterval(() => setHeroIndex(index => (index + 1) % heroImages.length), 5600); return () => window.clearInterval(timer); }, []);
   const [scrolled, setScrolled] = useState(false);
-  useEffect(() => { const updateNav = () => setScrolled(window.scrollY > 60); updateNav(); window.addEventListener("scroll", updateNav, { passive: true }); return () => window.removeEventListener("scroll", updateNav); }, []);
 
-  return <main>
-    <section className="hero" id="top">
-      <div className="hero-slides">{heroImages.map((image, index) => <div key={image} className={`hero-slide ${heroIndex === index ? "current" : ""}`} style={{backgroundImage:`linear-gradient(90deg,rgba(19,19,17,.75),rgba(19,19,17,.12)),url(${image})`}} />)}</div>
-      <nav className={`nav home-nav ${scrolled ? "scrolled" : ""}`}><a className="wordmark" href="#top">CORO<span>®</span></a><div className="nav-links"><a href="/collections">Collections</a><a href="/material-playground">Material playground</a><a href="/visit">Visit</a><a href="/contact">Contact</a></div><button className="menu" aria-label="Open menu">☰</button></nav>
-      <div className="hero-grain" />
-      <div className="hero-copy"><p className="eyebrow">Crafted collective · Bengaluru</p><h1>Explore<br/><i>possibility.</i></h1><p className="lede">A material and product innovation experience centre for the curious minds shaping space.</p><div className="actions"><a className="button light" href="#playground">Enter CORO <b>↘</b></a><a className="text-link" href="#collections">Explore materials <span>→</span></a></div></div>
-      <div className="hero-caption"><span>0{heroIndex + 1} — 04</span><span>Materials become ideas. Ideas become forms.</span></div>
-      <div className="hero-pagination">{heroImages.map((_, index) => <button key={index} aria-label={`Show image ${index + 1}`} className={heroIndex === index ? "active" : ""} onClick={() => setHeroIndex(index)} />)}</div><a className="scroll-cue" href="#intro">Scroll to discover <span>↓</span></a>
-    </section>
+  const { toggleSample, isSampleAdded, setIsDrawerOpen } = useSampleBox();
 
-    <section className="intro section" id="intro"><p className="section-number">01 / A different kind of material library</p><div className="intro-grid"><h2>Not a catalogue.<br/>A <i>playground</i><br/>for design.</h2><div><p className="large-copy">CORO brings together materials, product innovation, craft and thoughtful guidance—so your next idea has somewhere to begin.</p><a className="arrow-link" href="#worlds">Discover the collective <span>↘</span></a></div></div><div className="ticker"><span>CURIOUS</span><i>✦</i><span>TACTILE</span><i>✦</i><span>ARCHITECTURAL</span><i>✦</i><span>HUMAN</span><i>✦</i></div></section>
+  useEffect(() => {
+    const timer = window.setInterval(
+      () => setHeroIndex((index) => (index + 1) % heroImages.length),
+      5600
+    );
+    return () => window.clearInterval(timer);
+  }, []);
 
-    <section className="worlds" id="worlds"><div className="world-title"><p className="section-number">02 / Made for every kind of curious</p><h2>Find your way <i>in.</i></h2></div><div className="world-list">
-      {[['01','The Creator','Experiment. Specify. Create.','For architects, designers and makers who see a material as the beginning of a conversation.'],['02','The Explorer','Touch. Compare. Discover.','For those drawn to texture, tone and the pleasure of finding the unexpected.'],['03','The Everyman','Understand. Choose. Create.','For everyone ready to make a space feel more considered and more their own.']].map(([num,title,tag,copy])=><article className="world" key={title}><span>{num}</span><div><h3>{title}</h3><em>{tag}</em></div><p>{copy}</p><button aria-label={`Explore ${title}`}>↗</button></article>)}
-    </div></section>
+  useEffect(() => {
+    const updateNav = () => setScrolled(window.scrollY > 60);
+    updateNav();
+    window.addEventListener("scroll", updateNav, { passive: true });
+    return () => window.removeEventListener("scroll", updateNav);
+  }, []);
 
-    <section className="playground section" id="playground"><p className="section-number">03 / Interactive material playground</p><div className="playground-heading"><h2>What could it<br/><i>become?</i></h2><p>Begin with a material. Follow it into a space.</p></div><div className="playground-shell"><div className="material-pane"><p className="mini-label">Choose a material</p>{materialOptions.map(item=><button key={item.id} onClick={()=>setMaterial(item)} className={material.id===item.id?'selected':''}><span>{item.label}</span><small>{item.note}</small><b>→</b></button>)}<div className="scene-buttons"><p className="mini-label">Imagine a setting</p>{["Hospitality","Residential","Workplace"].map(item=><button onClick={()=>setScene(item)} className={scene===item?'active':''} key={item}>{item}</button>)}</div></div><div className={`visual-pane ${material.className}`}><div className="visual-copy"><p>Now imagining</p><h3>{material.label}<br/>in <i>{scene}.</i></h3><a href="#visit">Talk to a material specialist <span>↗</span></a></div><div className="material-swatch"/></div></div></section>
+  const handleMaterialChange = (mat: MaterialItem) => {
+    setSelectedMaterial(mat);
+    setSelectedFinish(mat.finishes[0]);
+  };
 
-    <section className="collection-section" id="collections"><div className="collection-head"><p className="section-number">04 / Explore CORO</p><h2>Eight worlds.<br/><i>One collective.</i></h2><p>Each family is a different invitation to explore how a space can look, feel and perform.</p></div><div className="collection-grid">{collections.map((item,index)=><a className={`collection-card ${item.tone}`} href="#visit" key={item.name}><img src={item.image} alt=""/><div className="card-shade"/><div className="card-top"><span>0{index+1}</span><span>Explore ↗</span></div><div className="card-bottom"><h3>CORO {item.name}</h3><p>{item.type}</p></div></a>)}</div><div className="more-collections"><p>Also in the collective</p><span>Mateos™</span><i>·</i><span>Velare™</span><a href="#visit">View all collections →</a></div></section>
+  return (
+    <main>
+      {/* HERO SECTION */}
+      <section className="hero" id="top">
+        <div className="hero-slides">
+          {heroImages.map((image, index) => (
+            <div
+              key={image}
+              className={`hero-slide ${heroIndex === index ? "current" : ""}`}
+              style={{
+                backgroundImage: `linear-gradient(90deg,rgba(19,19,17,.78),rgba(19,19,17,.18)),url(${image})`,
+              }}
+            />
+          ))}
+        </div>
 
-    <section className="story section"><div className="story-image"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1400&q=85" alt="Sculptural interior"/></div><div className="story-copy"><p className="section-number">05 / Design stories</p><p className="quote">“The right material doesn’t finish a room. It gives it a point of view.”</p><a className="arrow-link" href="#visit">Read a material story <span>↘</span></a></div></section>
+        <nav className={`home-nav ${scrolled ? "scrolled" : ""}`}>
+          <a className="wordmark" href="#top">
+            CORO<span>®</span>
+          </a>
+          <div className="inner-links">
+            <a href="/collections">Collections</a>
+            <a href="/material-playground">Playground</a>
+            <a href="/projects">Projects</a>
+            <a href="/visit">Visit Studio</a>
+            <a href="/contact">Contact</a>
+            <button
+              className="sample-box-badge-btn"
+              onClick={() => setIsDrawerOpen(true)}
+            >
+              <span>Sample Tray</span>
+            </button>
+          </div>
+        </nav>
 
-    <section className="visit" id="visit"><div className="visit-photo"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=85" alt="Contemporary interior"/></div><div className="visit-panel"><p className="section-number">06 / Come experience CORO</p><h2>Made to be<br/><i>experienced.</i></h2><p>Visit our Bengaluru experience centre to compare, discuss, touch and discover materials in real life.</p><div className="actions"><a className="button dark" href="mailto:hello@corocraftedcollective.com">Book a visit <b>↗</b></a><a className="text-link dark-text" href="https://www.instagram.com/coro.crafted.collective/" target="_blank">Follow the CORO world <span>→</span></a></div><small>Appointments and opening hours are confirmed directly with the CORO team.</small></div></section>
+        <div className="hero-grain" />
 
-    <Footer/>
-  </main>;
+        <div className="hero-copy">
+          <p className="eyebrow">Crafted Collective · Mahadevapura, Bengaluru</p>
+          <h1>
+            Explore<br />
+            <i>possibility.</i>
+          </h1>
+          <p className="lede">
+            A material & product innovation experience centre for architects and spatial minds shaping space in Bengaluru and beyond.
+          </p>
+          <div className="actions">
+            <a className="button light" href="#playground">
+              Enter Playground <b>↘</b>
+            </a>
+            <a className="text-link" href="#collections">
+              Explore 8 Material Families <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <div className="hero-caption">
+          <span>0{heroIndex + 1} — 04</span>
+          <span>Materials stop being samples and start becoming space.</span>
+        </div>
+
+        <div className="hero-pagination">
+          {heroImages.map((_, index) => (
+            <button
+              key={index}
+              aria-label={`Show slide ${index + 1}`}
+              className={heroIndex === index ? "active" : ""}
+              onClick={() => setHeroIndex(index)}
+            />
+          ))}
+        </div>
+
+        <a className="scroll-cue" href="#intro">
+          Scroll to discover <span>↓</span>
+        </a>
+      </section>
+
+      {/* INTRO SECTION */}
+      <section className="intro section" id="intro">
+        <p className="section-number">01 / A different kind of material library</p>
+        <div className="intro-grid">
+          <h2>
+            Not a catalogue.<br />
+            A <i>playground</i><br />
+            for design.
+          </h2>
+          <div>
+            <p className="large-copy">
+              CORO brings together architectural surfaces, product innovation, aggregate craft, and technical site execution—so your next design brief has somewhere inspiring to begin.
+            </p>
+            <a className="arrow-link" href="#worlds">
+              Discover the collective <span>↘</span>
+            </a>
+          </div>
+        </div>
+        <div className="ticker">
+          <span>IN-SITU TERRAZZO</span>
+          <i>✦</i>
+          <span>SOLID SURFACE FORM</span>
+          <i>✦</i>
+          <span>ARCHITECTURAL WIRE MESH</span>
+          <i>✦</i>
+          <span>ACOUSTIC FELT</span>
+          <i>✦</i>
+          <span>ENGINEERED TIMBER</span>
+          <i>✦</i>
+        </div>
+      </section>
+
+      {/* AUDIENCE / WORLDS */}
+      <section className="worlds" id="worlds">
+        <div className="world-title">
+          <p className="section-number">02 / Design Personas</p>
+          <h2>
+            Made for every<br /><i>curious mind.</i>
+          </h2>
+        </div>
+        <div className="world-list">
+          {[
+            [
+              "01",
+              "The Creator",
+              "Architects & Interior Designers",
+              "Specify aggregate mixes, custom mesh weaves, and monolithic thermoformed surface details for high-end briefs.",
+            ],
+            [
+              "02",
+              "The Explorer",
+              "Spatial Enthusiasts & Studio Makers",
+              "Touch, compare, feel light reflectance, and test physical material swatches in our Bengaluru studio.",
+            ],
+            [
+              "03",
+              "The Builder",
+              "Developers & Project Partners",
+              "Rely on verified technical slip ratings, stain resistance, and precise site execution guidance.",
+            ],
+          ].map(([num, title, tag, copy]) => (
+            <article className="world" key={title}>
+              <span>{num}</span>
+              <div>
+                <h3>{title}</h3>
+                <em>{tag}</em>
+              </div>
+              <p>{copy}</p>
+              <a className="button light" href="/visit" style={{ padding: "10px 14px" }}>
+                Explore ↗
+              </a>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* INTERACTIVE MATERIAL PLAYGROUND */}
+      <section className="playground section" id="playground">
+        <p className="section-number">03 / Studio Material Playground</p>
+        <div className="playground-heading">
+          <h2>
+            What could it<br />
+            <i>become?</i>
+          </h2>
+          <p>
+            Select a specimen, tweak tactile finishes, toggle lighting temperature, and save swatches to your sample box.
+          </p>
+        </div>
+
+        <div className="playground-shell">
+          <div className="material-pane">
+            <p className="mini-label">01 / Choose a material family</p>
+            {MATERIALS_DATA.slice(0, 5).map((item) => (
+              <button
+                key={item.id}
+                onClick={() => handleMaterialChange(item)}
+                className={selectedMaterial.id === item.id ? "selected" : ""}
+              >
+                <span>{item.name}</span>
+                <small>{item.tagline}</small>
+                <b>→</b>
+              </button>
+            ))}
+
+            <div className="finish-selector">
+              <p className="mini-label">02 / Select tactile finish</p>
+              <div className="finish-pills">
+                {selectedMaterial.finishes.map((finish) => (
+                  <button
+                    key={finish}
+                    className={`finish-pill-btn ${
+                      selectedFinish === finish ? "active" : ""
+                    }`}
+                    onClick={() => setSelectedFinish(finish)}
+                  >
+                    {finish}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="scene-buttons">
+              <p className="mini-label">03 / Setting context</p>
+              {["Hospitality", "Residential", "Workplace", "Outdoor Pavilion"].map(
+                (item) => (
+                  <button
+                    onClick={() => setScene(item)}
+                    className={scene === item ? "active" : ""}
+                    key={item}
+                  >
+                    {item}
+                  </button>
+                )
+              )}
+            </div>
+          </div>
+
+          <div
+            className="visual-pane"
+            style={{ backgroundImage: `url(${selectedMaterial.image})` }}
+          >
+            <div className={`visual-pane-overlay ${lightingMode}`} />
+
+            <div className="lighting-toggle">
+              <span className="eyebrow" style={{ color: "#fff" }}>
+                {selectedMaterial.code}
+              </span>
+              <div className="light-btn-group">
+                <button
+                  className={`light-btn ${
+                    lightingMode === "daylight" ? "active" : ""
+                  }`}
+                  onClick={() => setLightingMode("daylight")}
+                >
+                  Daylight 5500K
+                </button>
+                <button
+                  className={`light-btn ${
+                    lightingMode === "warm" ? "active" : ""
+                  }`}
+                  onClick={() => setLightingMode("warm")}
+                >
+                  Warm 3000K
+                </button>
+              </div>
+            </div>
+
+            <div className="visual-copy">
+              <p>Active Specimen & Context</p>
+              <h3>
+                {selectedMaterial.name}<br />
+                <i>in {scene}.</i>
+              </h3>
+
+              <div className="spec-mini-grid">
+                <div className="spec-item">
+                  <small>Selected Finish</small>
+                  <span>{selectedFinish}</span>
+                </div>
+                <div className="spec-item">
+                  <small>Density / Strength</small>
+                  <span>{selectedMaterial.specifications.density}</span>
+                </div>
+                <div className="spec-item">
+                  <small>Stain Resistance</small>
+                  <span>{selectedMaterial.specifications.stainRating}</span>
+                </div>
+                <div className="spec-item">
+                  <small>Applications</small>
+                  <span>{selectedMaterial.specifications.applications}</span>
+                </div>
+              </div>
+
+              <div className="visual-actions">
+                <button
+                  className="button light"
+                  onClick={() => toggleSample(selectedMaterial)}
+                >
+                  {isSampleAdded(selectedMaterial.id)
+                    ? "✓ In Sample Box"
+                    : "+ Add to Sample Box"}
+                </button>
+                <a className="text-link" href="/contact" style={{ color: "#fff" }}>
+                  Discuss technical drawing ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* COLLECTIONS GRID */}
+      <section className="collection-section" id="collections">
+        <div className="collection-head">
+          <p className="section-number">04 / Material Families</p>
+          <h2>
+            Eight worlds.<br />
+            <i>One collective.</i>
+          </h2>
+          <p>
+            Each family represents an invitation to explore how physical materials elevate architectural tone, tactile acoustics, and surface longevity.
+          </p>
+        </div>
+
+        <div className="collection-grid">
+          {MATERIALS_DATA.slice(0, 6).map((item, index) => (
+            <div className={`collection-card ${item.tone}`} key={item.id}>
+              <img src={item.image} alt={item.name} />
+              <div className="card-shade" />
+              <div className="card-top">
+                <span>0{index + 1} · {item.code}</span>
+                <span>{item.category}</span>
+              </div>
+              <div className="card-bottom">
+                <h3>CORO {item.name}</h3>
+                <p>{item.tagline}</p>
+                <button
+                  className={`card-sample-btn ${
+                    isSampleAdded(item.id) ? "added" : ""
+                  }`}
+                  onClick={() => toggleSample(item)}
+                >
+                  {isSampleAdded(item.id)
+                    ? "✓ In Sample Tray"
+                    : "+ Add Sample"}
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="more-collections">
+          <p>Also in the collective:</p>
+          <span>Mateos™</span>
+          <i>·</i>
+          <span>Velare™</span>
+          <a href="/collections">View Complete Material Catalog →</a>
+        </div>
+      </section>
+
+      {/* ARCHITECTURAL PROJECTS SECTION */}
+      <ProjectsSection />
+
+      {/* VISIT EXPERIENCE CENTRE */}
+      <section className="visit" id="visit">
+        <div className="visit-photo">
+          <img
+            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=85"
+            alt="CORO Experience Centre Bangalore"
+          />
+        </div>
+        <div className="visit-panel">
+          <p className="section-number">06 / Visit the Experience Centre</p>
+          <h2>
+            Made to be<br />
+            <i>experienced.</i>
+          </h2>
+          <p>
+            Visit our studio in <strong>Mahadevapura, Bengaluru</strong> to study material light play, request sample boxes, and consult with our technical specialists.
+          </p>
+          <p className="studio-address-highlight" style={{ fontSize: "12px", opacity: 0.85, margin: "16px 0" }}>
+            📍 {STUDIO_INFO.address}
+          </p>
+
+          <div className="actions">
+            <a className="button dark" href="/contact">
+              Book Studio Appointment <b>↗</b>
+            </a>
+            <a
+              className="text-link dark-text"
+              href={STUDIO_INFO.instagram}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Follow {STUDIO_INFO.instagramHandle} <span>→</span>
+            </a>
+          </div>
+
+          <small>
+            Appointments and opening hours ({STUDIO_INFO.hours}) are confirmed directly with the CORO technical team.
+          </small>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+  );
 }

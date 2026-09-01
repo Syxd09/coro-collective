@@ -1,13 +1,116 @@
+"use client";
+
+import { useState } from "react";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
-const collections = [
-  ["Tessera™", "Layered surfaces", "Cement tiles, terrazzo, ceramic and expressive surfaces for floors and walls.", "https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=1300&q=85"],
-  ["Poroso™", "Spatial screens", "Wire mesh and architectural screening that shape light, air and connection.", "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1300&q=85"],
-  ["Fresco™", "Outdoor living", "Outdoor environments considered as complete places to gather, rest and stay awhile.", "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1300&q=85"],
-  ["Aria™", "Acoustic architecture", "Felt-led acoustic layers for spaces that need to sound as good as they look.", "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1300&q=85"],
-  ["Planko™", "Grounded flooring", "Textured floors with a warm, considered point of view.", "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=1300&q=85"],
-  ["Mateos™", "Flexible furniture", "Configurable pieces for environments that change with the people in them.", "https://images.unsplash.com/photo-1493666438817-866a91353ca9?auto=format&fit=crop&w=1300&q=85"],
-  ["Rocco™", "Bespoke surfaces", "Solid surface, fabrication and form—in one continuous architectural expression.", "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1300&q=85"],
-  ["Velare™", "Soft architectural layers", "Wall coverings, blinds and surface treatments that shape atmosphere.", "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1300&q=85"]
-];
-export default function Collections(){return <main className="inner-page"><Nav/><header className="page-intro"><p className="section-number">The CORO collective</p><h1>Materials with<br/><i>a point of view.</i></h1><p>Eight worlds of material, product and possibility—each ready to enter a new space.</p></header><section className="collection-list">{collections.map(([name,type,description,image],index)=><article className="collection-row" key={name}><div className="collection-image"><img src={image} alt=""/></div><span className="row-number">0{index+1}</span><div><h2>CORO {name}</h2><em>{type}</em><p>{description}</p></div><a href="/contact" aria-label={`Discuss ${name}`}>↗</a></article>)}</section><Footer/></main>}
+import { MATERIALS_DATA, MaterialItem } from "../data/materialsData";
+import { useSampleBox } from "../context/SampleBoxContext";
+
+export default function Collections() {
+  const [activeCategory, setActiveCategory] = useState<string>("All");
+  const { toggleSample, isSampleAdded } = useSampleBox();
+
+  const categories = ["All", "Surfaces", "Screens", "Acoustics", "Flooring", "Outdoor", "Furniture"];
+
+  const filteredMaterials =
+    activeCategory === "All"
+      ? MATERIALS_DATA
+      : MATERIALS_DATA.filter((m) => m.category === activeCategory);
+
+  return (
+    <main className="inner-page">
+      <Nav />
+      <header className="page-intro">
+        <p className="section-number">The CORO Collective Catalog</p>
+        <h1>
+          Materials with<br />
+          <i>a point of view.</i>
+        </h1>
+        <p>
+          Eight material families of surface, screening, sound control, and spatial possibility—each ready to be specified into architectural space.
+        </p>
+      </header>
+
+      <section className="filter-bar">
+        <span className="filter-label">Filter by Application:</span>
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            className={`filter-tab ${activeCategory === cat ? "active" : ""}`}
+            onClick={() => setActiveCategory(cat)}
+          >
+            {cat}
+          </button>
+        ))}
+      </section>
+
+      <section className="collection-list">
+        {filteredMaterials.map((item, index) => (
+          <article className="collection-row" key={item.id}>
+            <div className="collection-image">
+              <img src={item.image} alt={item.name} />
+            </div>
+
+            <span className="row-number">
+              0{index + 1}
+              <br />
+              <small style={{ fontSize: "9px", color: "var(--clay)" }}>
+                {item.code}
+              </small>
+            </span>
+
+            <div>
+              <h2>CORO {item.name}</h2>
+              <em>{item.tagline}</em>
+              <p>{item.fullDetails}</p>
+
+              <div
+                className="spec-mini-pills"
+                style={{
+                  display: "flex",
+                  gap: "12px",
+                  fontSize: "11px",
+                  marginTop: "12px",
+                  color: "#6b645b",
+                  fontFamily: "DM Mono",
+                }}
+              >
+                <span>Density: {item.specifications.density}</span>
+                <span>•</span>
+                <span>Stain: {item.specifications.stainRating}</span>
+              </div>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "flex-end" }}>
+              <button
+                className={`card-sample-btn ${isSampleAdded(item.id) ? "added" : ""}`}
+                onClick={() => toggleSample(item)}
+                style={{ padding: "8px 14px", fontSize: "11px" }}
+              >
+                {isSampleAdded(item.id) ? "✓ In Sample Box" : "+ Add Sample"}
+              </button>
+
+              <a
+                href="/contact"
+                aria-label={`Discuss ${item.name}`}
+                style={{
+                  width: "42px",
+                  height: "42px",
+                  border: "1px solid var(--ink)",
+                  borderRadius: "50%",
+                  display: "grid",
+                  placeItems: "center",
+                  fontSize: "18px",
+                }}
+              >
+                ↗
+              </a>
+            </div>
+          </article>
+        ))}
+      </section>
+
+      <Footer />
+    </main>
+  );
+}
