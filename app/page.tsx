@@ -6,6 +6,7 @@ import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { ProjectsSection } from "./components/ProjectsSection";
 import { MaterialPlayground } from "./components/MaterialPlayground";
+import { InteriorsSection } from "./components/InteriorsSection";
 import { MATERIALS_DATA, STUDIO_INFO } from "./data/materialsData";
 import { useSampleBox } from "./context/SampleBoxContext";
 
@@ -166,6 +167,9 @@ export default function Home() {
 
       {/* INTERACTIVE MATERIAL PLAYGROUND */}
       <MaterialPlayground />
+
+      {/* TURNKEY HOME INTERIORS & JOINERY */}
+      <InteriorsSection />
 
       {/* COLLECTIONS GRID */}
       <section className="collection-section" id="collections">

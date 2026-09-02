@@ -194,6 +194,80 @@ export const MATERIALS_DATA: MaterialItem[] = [
   }
 ];
 
+export interface InteriorService {
+  id: string;
+  title: string;
+  subtitle: string;
+  category: "Kitchens" | "Wardrobes" | "Living Rooms" | "Turnkey Execution";
+  description: string;
+  highlights: string[];
+  materialsFeatured: string[];
+  image: string;
+}
+
+export const INTERIOR_SERVICES: InteriorService[] = [
+  {
+    id: "bespoke-kitchens",
+    title: "Bespoke & Modular Kitchens",
+    subtitle: "Monolithic islands, seamless thermoforming & stone craftsmanship",
+    category: "Kitchens",
+    description: "Architectural kitchens engineered for high-performance living. Seamless Corian and solid surface counters, in-situ terrazzo island plinths, soft-closing European hardware, and integrated undermount basins.",
+    highlights: [
+      "Seamless monolithic countertops with invisible joints",
+      "Custom in-situ terrazzo & quartz island plinths",
+      "Concealed appliance integration & Blum/Hettich hardware",
+      "Anti-fingerprint acrylic & matte lacquer cabinetry"
+    ],
+    materialsFeatured: ["Rocco™ Solid Surface", "Tessera™ Terrazzo", "Planko™ Smoked Oak"],
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=85"
+  },
+  {
+    id: "custom-wardrobes",
+    title: "Walk-In Suites & Wardrobes",
+    subtitle: "Architectural mesh screens, fluted glass & tailored dressing joinery",
+    category: "Wardrobes",
+    description: "Custom wardrobe systems designed with spatial transparency. Featuring anodized bronze mesh door panels, integrated ambient warm LED channel profiles, Italian drawer organizers, and rich veneer carcases.",
+    highlights: [
+      "Woven metallic mesh & fluted bronze glass shutters",
+      "Integrated 3000K warm ambient channel lighting",
+      "Custom velvet/leatherette organizers & jewelry trays",
+      "Floor-to-ceiling seamless aluminum frame profiles"
+    ],
+    materialsFeatured: ["Poroso™ Architectural Mesh", "Planko™ Fluted Timber", "Velare™ Silk Linings"],
+    image: "https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=1400&q=85"
+  },
+  {
+    id: "living-spatial-framing",
+    title: "Living Spaces & Bespoke Joinery",
+    subtitle: "Acoustic timber slat walls, floating credenzas & in-situ terrazzo flooring",
+    category: "Living Rooms",
+    description: "Turnkey living room environments that unite tactile acoustics with minimal structural joinery. Sculpted micro-cement fireplace features, custom display shelving, and acoustic felt ceiling drops.",
+    highlights: [
+      "Seamless in-situ terrazzo continuous monolithic flooring",
+      "Acoustical felt & smoked timber fluted feature walls",
+      "Minimal floating entertainment credenzas & display niches",
+      "Integrated architectural lighting & brass trims"
+    ],
+    materialsFeatured: ["Tessera™ In-Situ", "Aria™ Acoustic Felt", "Mateos™ Custom Joinery"],
+    image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=85"
+  },
+  {
+    id: "turnkey-execution",
+    title: "Turnkey Home & Space Execution",
+    subtitle: "From CAD shop drawings to precision site handover in Bengaluru",
+    category: "Turnkey Execution",
+    description: "End-to-end interior execution partner for architects and discerning homeowners. We take care of millwork shop drawings, sample mockups, precision factory fabrication, on-site MEP coordination, and flawless handover.",
+    highlights: [
+      "Dedicated technical project leads & site engineers",
+      "Precision in-house CNC millwork & thermoforming",
+      "Rigorous on-site execution benchmarks & milestone tracking",
+      "Complete post-handover warranty & maintenance support"
+    ],
+    materialsFeatured: ["Complete CORO Material Ecosystem"],
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=85"
+  }
+];
+
 export const PROJECT_CASE_STUDIES: ProjectCaseStudy[] = [
   {
     id: "fursat-residence",

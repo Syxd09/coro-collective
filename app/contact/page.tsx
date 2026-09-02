@@ -118,8 +118,11 @@ export default function Contact() {
                 value={form.interest}
                 onChange={(val) => setForm({ ...form, interest: val })}
                 options={[
+                  "Turnkey Home Interior Execution",
+                  "Modular Kitchens & Monolithic Islands",
+                  "Walk-in Wardrobe & Suite Joinery",
+                  "Living Room Spatial Design & Terrazzo",
                   "Material Consultation & Sampling",
-                  "Project Execution & Site Mockup",
                   "Bengaluru Studio Visit Appointment",
                   "Custom Terrazzo / Surface Specification",
                 ]}
