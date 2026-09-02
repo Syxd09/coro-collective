@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useSampleBox } from "../context/SampleBoxContext";
+import { CustomSelect } from "./CustomSelect";
 import { STUDIO_INFO } from "../data/materialsData";
 
 export function SampleBoxDrawer() {
@@ -212,19 +213,21 @@ export function SampleBoxDrawer() {
                     />
                   </label>
 
-                  <label className="full">
-                    Request Mode
-                    <select
+                  <div className="full">
+                    <label>Request Mode</label>
+                    <CustomSelect
                       value={formData.dispatchType}
-                      onChange={(e) =>
-                        setFormData({ ...formData, dispatchType: e.target.value })
+                      onChange={(val) =>
+                        setFormData({ ...formData, dispatchType: val })
                       }
-                    >
-                      <option>Physical Sample Box Delivery (Courier)</option>
-                      <option>Collect at Mahadevapura Studio</option>
-                      <option>Schedule In-Person Material Consultation</option>
-                    </select>
-                  </label>
+                      options={[
+                        "Physical Sample Box Delivery (Courier)",
+                        "Collect at Mahadevapura Studio",
+                        "Schedule In-Person Material Consultation",
+                      ]}
+                      theme="light"
+                    />
+                  </div>
 
                   <label className="full">
                     Project Context & Location

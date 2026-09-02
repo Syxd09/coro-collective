@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
+import { CustomSelect } from "../components/CustomSelect";
 import { STUDIO_INFO } from "../data/materialsData";
 
 export default function Contact() {
@@ -111,18 +112,20 @@ export default function Contact() {
               />
             </label>
 
-            <label className="full">
-              Primary Focus
-              <select
+            <div className="full">
+              <label>Primary Focus</label>
+              <CustomSelect
                 value={form.interest}
-                onChange={(e) => setForm({ ...form, interest: e.target.value })}
-              >
-                <option>Material Consultation & Sampling</option>
-                <option>Project Execution & Site Mockup</option>
-                <option>Bengaluru Studio Visit Appointment</option>
-                <option>Custom Terrazzo / Surface Specification</option>
-              </select>
-            </label>
+                onChange={(val) => setForm({ ...form, interest: val })}
+                options={[
+                  "Material Consultation & Sampling",
+                  "Project Execution & Site Mockup",
+                  "Bengaluru Studio Visit Appointment",
+                  "Custom Terrazzo / Surface Specification",
+                ]}
+                theme="terracotta"
+              />
+            </div>
 
             <label className="full">
               Project Details & Timeline
