@@ -390,15 +390,15 @@ export default function Home() {
       <ProjectsSection />
 
       {/* VISIT EXPERIENCE CENTRE */}
-      <section className="visit" id="visit">
-        <div className="visit-photo">
+      <section className="home-visit" id="visit">
+        <div className="home-visit-photo">
           <img
             src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=85"
             alt="CORO Experience Centre Bangalore"
           />
         </div>
-        <div className="visit-panel">
-          <p className="section-number">06 / Visit the Experience Centre</p>
+        <div className="home-visit-panel">
+          <p className="eyebrow" style={{ color: "#f7dcd5" }}>06 / Visit the Experience Centre</p>
           <h2>
             Made to be<br />
             <i>experienced.</i>
@@ -406,7 +406,7 @@ export default function Home() {
           <p>
             Visit our studio in <strong>Mahadevapura, Bengaluru</strong> to study material light play, request sample boxes, and consult with our technical specialists.
           </p>
-          <p className="studio-address-highlight" style={{ fontSize: "12px", opacity: 0.85, margin: "16px 0" }}>
+          <p className="studio-address-highlight" style={{ fontSize: "13px", opacity: 0.9, margin: "16px 0", color: "#f9ede8" }}>
             📍 {STUDIO_INFO.address}
           </p>
 
@@ -415,16 +415,17 @@ export default function Home() {
               Book Studio Appointment <b>↗</b>
             </a>
             <a
-              className="text-link dark-text"
+              className="text-link"
               href={STUDIO_INFO.instagram}
               target="_blank"
               rel="noreferrer"
+              style={{ color: "#fff", borderColor: "rgba(255,255,255,0.6)" }}
             >
               Follow {STUDIO_INFO.instagramHandle} <span>→</span>
             </a>
           </div>
 
-          <small>
+          <small style={{ marginTop: "30px", opacity: 0.8, fontSize: "11px", lineHeight: "1.5", color: "#f9ede8" }}>
             Appointments and opening hours ({STUDIO_INFO.hours}) are confirmed directly with the CORO technical team.
           </small>
         </div>
