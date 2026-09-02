@@ -246,18 +246,22 @@ export default function Home() {
             </div>
           </div>
 
-          <div
-            className="visual-pane"
-            style={{ backgroundImage: `url(${selectedMaterial.image})` }}
-          >
+          <div className="visual-pane">
+            <img
+              key={selectedMaterial.id}
+              src={selectedMaterial.image}
+              alt={selectedMaterial.name}
+              className="visual-pane-img"
+            />
             <div className={`visual-pane-overlay ${lightingMode}`} />
 
             <div className="lighting-toggle">
-              <span className="eyebrow" style={{ color: "#fff" }}>
-                {selectedMaterial.code}
+              <span className="eyebrow" style={{ color: "#fff", background: "rgba(0,0,0,0.4)", padding: "4px 8px", borderRadius: "4px" }}>
+                {selectedMaterial.code} · {selectedMaterial.category}
               </span>
               <div className="light-btn-group">
                 <button
+                  type="button"
                   className={`light-btn ${
                     lightingMode === "daylight" ? "active" : ""
                   }`}
@@ -266,6 +270,7 @@ export default function Home() {
                   Daylight 5500K
                 </button>
                 <button
+                  type="button"
                   className={`light-btn ${
                     lightingMode === "warm" ? "active" : ""
                   }`}

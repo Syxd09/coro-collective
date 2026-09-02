@@ -609,27 +609,33 @@ i {
 }
 
 .material-pane > button {
-  background: none;
+  background: transparent;
   border: 0;
   border-bottom: 1px solid rgba(20, 20, 18, 0.18);
+  border-left: 4px solid transparent;
   text-align: left;
-  padding: 20px 0;
+  padding: 18px 12px;
   display: grid;
   grid-template-columns: 1fr 1.2fr 24px;
-  color: #555;
+  color: #666;
   cursor: pointer;
   pointer-events: auto;
-  transition: all 0.25s;
+  user-select: none;
+  transition: all 0.2s ease;
 }
 
 .material-pane > button:hover {
   color: #171715;
-  padding-left: 6px;
+  background: rgba(0, 0, 0, 0.03);
+  padding-left: 16px;
 }
 
 .material-pane > button.selected {
   color: #171715;
-  font-weight: 500;
+  font-weight: 600;
+  background: rgba(23, 23, 21, 0.07);
+  border-left-color: var(--clay);
+  padding-left: 16px;
 }
 
 .material-pane > button span {
@@ -646,6 +652,13 @@ i {
   font-size: 16px;
   font-weight: 400;
   text-align: right;
+  transition: transform 0.2s ease;
+}
+
+.material-pane > button.selected b {
+  color: var(--clay);
+  font-weight: 700;
+  transform: translateX(3px);
 }
 
 .finish-selector,
@@ -657,49 +670,69 @@ i {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  margin-top: 8px;
+  margin-top: 10px;
 }
 
 .finish-pill-btn {
-  padding: 6px 12px;
+  padding: 8px 14px;
   border: 1px solid var(--line);
   background: transparent;
   font-size: 11px;
   border-radius: 20px;
   cursor: pointer;
   pointer-events: auto;
+  user-select: none;
   transition: all 0.2s;
 }
 
 .finish-pill-btn:hover {
   border-color: var(--ink);
+  background: rgba(0, 0, 0, 0.04);
 }
 
 .finish-pill-btn.active {
   background: var(--ink);
   color: #fff;
   border-color: var(--ink);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.scene-buttons {
+  margin-top: 24px;
+}
+
+.scene-buttons-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
 }
 
 .scene-buttons button {
-  border: 0;
+  border: 1px solid transparent;
   background: none;
-  padding: 8px 16px 8px 0;
+  padding: 6px 12px;
+  margin-right: 6px;
+  margin-top: 6px;
   font-size: 12px;
   color: #69645e;
   cursor: pointer;
   pointer-events: auto;
+  border-radius: 4px;
+  user-select: none;
+  transition: all 0.2s;
 }
 
 .scene-buttons button:hover {
   color: #171715;
+  background: rgba(0, 0, 0, 0.04);
 }
 
 .scene-buttons button.active {
-  font-weight: bold;
-  color: #171715;
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--ink);
+  border-color: var(--ink);
 }
 
 .visual-pane {
@@ -710,10 +743,18 @@ i {
   flex-direction: column;
   justify-content: space-between;
   padding: 42px;
-  background-size: cover;
-  background-position: center;
   color: #f7f2eb;
-  transition: background-image 0.6s ease;
+}
+
+.visual-pane-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
 }
 
 .visual-pane-overlay {
