@@ -43,11 +43,14 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  cursor: pointer;
 }
 
 button {
   font: inherit;
   cursor: pointer;
+  border: 0;
+  background: none;
 }
 
 img {
@@ -127,6 +130,8 @@ i {
   gap: 25px;
   margin-top: 32px;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 5;
 }
 
 .button {
@@ -139,7 +144,10 @@ i {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   border: 0;
-  border-radius: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 5;
   transition: all 0.25s ease;
 }
 
@@ -177,6 +185,10 @@ i {
   letter-spacing: 0.04em;
   display: inline-flex;
   align-items: center;
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 5;
   transition: border-color 0.2s;
 }
 
@@ -190,6 +202,10 @@ i {
   padding-bottom: 7px;
   display: inline-flex;
   align-items: center;
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 5;
 }
 
 .arrow-link span {
@@ -200,23 +216,10 @@ i {
 /* ==========================================================================
    05. NAVIGATION (HOME & INNER PAGES)
    ========================================================================== */
-.home-nav {
-  position: fixed;
-  z-index: 40;
-  top: 0;
-  width: 100%;
-  padding: 30px 4vw;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #f2ede4;
-  transition: background-color 0.35s ease, color 0.35s ease, padding 0.35s ease;
-}
-
 .inner-nav {
   position: sticky;
   top: 0;
-  z-index: 40;
+  z-index: 60;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -229,19 +232,22 @@ i {
 }
 
 .inner-nav.pale {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   background: transparent;
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.18);
   color: #f3ece2;
 }
 
-.inner-nav.scrolled,
-.home-nav.scrolled {
-  background: #f4f0e9;
-  color: var(--ink);
+.inner-nav.scrolled {
+  background: #f4f0e9 !important;
+  color: var(--ink) !important;
   padding-top: 16px;
   padding-bottom: 16px;
-  border-color: var(--line);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border-color: var(--line) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .inner-links {
@@ -253,6 +259,8 @@ i {
 .inner-links a {
   padding-bottom: 4px;
   border-bottom: 1px solid transparent;
+  cursor: pointer;
+  pointer-events: auto;
   transition: all 0.25s;
 }
 
@@ -272,12 +280,23 @@ i {
   border-radius: 40px;
   font-size: 12px;
   letter-spacing: 0.04em;
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 5;
   transition: transform 0.2s, background-color 0.2s;
+}
+
+.inner-nav.pale:not(.scrolled) .sample-box-badge-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .sample-box-badge-btn:hover {
   transform: translateY(-2px);
-  background: var(--clay);
+  background: var(--clay) !important;
+  color: #fff !important;
 }
 
 .sample-box-badge-btn small {
@@ -297,6 +316,8 @@ i {
   border: 0;
   font-size: 24px;
   color: inherit;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .mobile-menu-overlay {
@@ -356,6 +377,7 @@ i {
 .hero-slides {
   position: absolute;
   inset: 0;
+  pointer-events: none;
 }
 
 .hero-slide {
@@ -365,6 +387,7 @@ i {
   background-position: center;
   opacity: 0;
   transform: scale(1.02);
+  pointer-events: none;
   transition: opacity 1.4s ease, transform 6s ease;
 }
 
@@ -380,18 +403,20 @@ i {
   background-image: radial-gradient(#f4eee5 0.5px, transparent 0.7px);
   background-size: 5px 5px;
   mix-blend-mode: soft-light;
+  pointer-events: none;
 }
 
 .hero-copy {
-  z-index: 2;
+  z-index: 10;
   position: absolute;
   left: 10vw;
   bottom: 16vh;
   max-width: 720px;
+  pointer-events: auto;
 }
 
 .hero-caption {
-  z-index: 2;
+  z-index: 10;
   position: absolute;
   bottom: 30px;
   left: 4vw;
@@ -400,24 +425,32 @@ i {
   display: flex;
   justify-content: space-between;
   color: #d9d1c7;
+  pointer-events: none;
 }
 
 .hero-pagination {
   position: absolute;
-  z-index: 2;
+  z-index: 15;
   right: 14vw;
   bottom: 34px;
   display: flex;
   gap: 7px;
+  pointer-events: auto;
 }
 
 .hero-pagination button {
-  height: 5px;
+  height: 6px;
   width: 22px;
   border: 0;
   background: rgba(238, 232, 222, 0.4);
   padding: 0;
+  cursor: pointer;
+  pointer-events: auto;
   transition: background 0.25s, width 0.25s;
+}
+
+.hero-pagination button:hover {
+  background: rgba(238, 232, 222, 0.8);
 }
 
 .hero-pagination button.active {
@@ -429,10 +462,12 @@ i {
   position: absolute;
   right: 4vw;
   bottom: 27px;
-  z-index: 2;
+  z-index: 15;
   text-transform: uppercase;
   font: 10px var(--font-mono);
   letter-spacing: 0.08em;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .scroll-cue span {
@@ -582,11 +617,19 @@ i {
   display: grid;
   grid-template-columns: 1fr 1.2fr 24px;
   color: #555;
+  cursor: pointer;
+  pointer-events: auto;
   transition: all 0.25s;
+}
+
+.material-pane > button:hover {
+  color: #171715;
+  padding-left: 6px;
 }
 
 .material-pane > button.selected {
   color: #171715;
+  font-weight: 500;
 }
 
 .material-pane > button span {
@@ -623,7 +666,13 @@ i {
   background: transparent;
   font-size: 11px;
   border-radius: 20px;
+  cursor: pointer;
+  pointer-events: auto;
   transition: all 0.2s;
+}
+
+.finish-pill-btn:hover {
+  border-color: var(--ink);
 }
 
 .finish-pill-btn.active {
@@ -638,6 +687,12 @@ i {
   padding: 8px 16px 8px 0;
   font-size: 12px;
   color: #69645e;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.scene-buttons button:hover {
+  color: #171715;
 }
 
 .scene-buttons button.active {
@@ -665,23 +720,25 @@ i {
   position: absolute;
   inset: 0;
   z-index: 0;
+  pointer-events: none;
   transition: background 0.4s ease;
 }
 
 .visual-pane-overlay.daylight {
-  background: linear-gradient(180deg, rgba(15, 15, 13, 0.4), rgba(15, 15, 13, 0.85));
+  background: linear-gradient(180deg, rgba(15, 15, 13, 0.35), rgba(15, 15, 13, 0.85));
 }
 
 .visual-pane-overlay.warm {
-  background: linear-gradient(180deg, rgba(65, 30, 15, 0.55), rgba(20, 10, 5, 0.9));
+  background: linear-gradient(180deg, rgba(65, 30, 15, 0.45), rgba(20, 10, 5, 0.88));
 }
 
 .lighting-toggle {
   position: relative;
-  z-index: 2;
+  z-index: 5;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  pointer-events: auto;
 }
 
 .light-btn-group {
@@ -690,14 +747,21 @@ i {
 }
 
 .light-btn {
-  padding: 5px 10px;
+  padding: 6px 12px;
   background: rgba(255, 255, 255, 0.2);
   border: 0;
   color: #fff;
   font-size: 10px;
   font-family: var(--font-mono);
   border-radius: 4px;
+  cursor: pointer;
+  pointer-events: auto;
   backdrop-filter: blur(4px);
+  transition: all 0.2s;
+}
+
+.light-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
 }
 
 .light-btn.active {
@@ -707,7 +771,8 @@ i {
 
 .visual-copy {
   position: relative;
-  z-index: 2;
+  z-index: 5;
+  pointer-events: auto;
 }
 
 .visual-copy p {
@@ -748,6 +813,9 @@ i {
   gap: 16px;
   align-items: center;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 5;
+  pointer-events: auto;
 }
 
 /* ==========================================================================
@@ -790,6 +858,7 @@ i {
   width: 100%;
   object-fit: cover;
   transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  pointer-events: none;
 }
 
 .collection-card:hover img {
@@ -800,6 +869,7 @@ i {
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), transparent 40%, rgba(0, 0, 0, 0.75));
+  pointer-events: none;
 }
 
 .card-top,
@@ -811,16 +881,19 @@ i {
   justify-content: space-between;
   font: 10px var(--font-mono);
   text-transform: uppercase;
-  z-index: 2;
+  z-index: 5;
+  pointer-events: auto;
 }
 
 .card-top {
   top: 23px;
+  pointer-events: none;
 }
 
 .card-bottom {
   bottom: 23px;
   display: block;
+  pointer-events: auto;
 }
 
 .card-bottom h3 {
@@ -840,12 +913,16 @@ i {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 12px;
+  padding: 8px 14px;
   background: rgba(255, 255, 255, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.4);
   color: #fff;
   border-radius: 20px;
-  font-size: 10px;
+  font-size: 11px;
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  z-index: 6;
   backdrop-filter: blur(4px);
   transition: all 0.2s;
 }
@@ -948,6 +1025,8 @@ i {
   background: transparent;
   font-size: 12px;
   border-radius: 30px;
+  cursor: pointer;
+  pointer-events: auto;
   transition: all 0.2s;
 }
 
@@ -1036,6 +1115,8 @@ i {
   display: flex;
   justify-content: space-between;
   color: #6f685e;
+  cursor: pointer;
+  pointer-events: auto;
   transition: all 0.25s;
 }
 
@@ -1063,6 +1144,8 @@ i {
   padding: 8px 16px 8px 0;
   font-size: 12px;
   color: #69645e;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .space-select button.active {
@@ -1394,6 +1477,7 @@ i {
   background: rgba(0, 0, 0, 0.5);
   z-index: 90;
   backdrop-filter: blur(3px);
+  cursor: pointer;
 }
 
 .sample-drawer {
@@ -1438,6 +1522,7 @@ i {
   height: 36px;
   border-radius: 50%;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .drawer-body {
@@ -1507,6 +1592,7 @@ i {
   border: 0;
   color: #8c8278;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .sample-remove:hover {
@@ -1532,6 +1618,7 @@ i {
   color: #a89d91;
   font-size: 12px;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .modal-backdrop {
@@ -1564,6 +1651,7 @@ i {
   width: 36px;
   height: 36px;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .modal-form h2 {
@@ -1670,6 +1758,7 @@ footer {
   font-size: 13px;
   color: #d1c7bc;
   margin-bottom: 10px;
+  cursor: pointer;
   transition: color 0.2s;
 }
 

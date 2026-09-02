@@ -45,6 +45,8 @@ export default function Home() {
 
   return (
     <main>
+      <Nav light />
+
       {/* HERO SECTION */}
       <section className="hero" id="top">
         <div className="hero-slides">
@@ -58,8 +60,6 @@ export default function Home() {
             />
           ))}
         </div>
-
-        <Nav light />
 
         <div className="hero-grain" />
 
