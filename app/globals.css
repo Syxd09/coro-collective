@@ -2138,8 +2138,34 @@ footer {
 /* ==========================================================================
    14C. DEDICATED VISIT SCHEDULING EXPERIENCE
    ========================================================================== */
-.visit-booking-section {
+.visit-page {
   background: #ede8df;
+  color: #171715;
+  min-height: 100vh;
+}
+
+.visit-hero {
+  background: #1c1b18;
+  color: #f7f3ec;
+  padding: 140px 8vw 80px;
+}
+
+.visit-hero h1 {
+  color: #ffffff !important;
+  margin: 16px 0 20px;
+  font-family: var(--font-serif);
+}
+
+.visit-hero p {
+  color: #ded8cf !important;
+  max-width: 580px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.visit-booking-section {
+  background: #e4dcd0;
+  color: #171715;
   padding: 80px 8vw 120px;
 }
 
@@ -2157,15 +2183,23 @@ footer {
 }
 
 .info-card {
-  background: #f7f3ec;
-  border: 1px solid var(--line);
+  background: #ffffff;
+  color: #171715;
+  border: 1px solid rgba(23, 23, 21, 0.14);
   padding: 36px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
 }
 
 .info-card h3 {
-  font: 500 28px var(--font-serif);
+  font: 600 28px var(--font-serif);
+  color: #171715 !important;
   margin: 6px 0 12px;
+}
+
+.info-card p {
+  color: #332f2a !important;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .studio-meta-grid {
@@ -2178,28 +2212,29 @@ footer {
 .studio-meta-grid div small {
   display: block;
   font: 10px var(--font-mono);
-  color: #797166;
+  color: #696259 !important;
   text-transform: uppercase;
 }
 
 .studio-meta-grid div span {
   display: block;
   font-size: 13px;
-  font-weight: 500;
-  color: var(--ink);
+  font-weight: 600;
+  color: #171715 !important;
   margin-top: 3px;
 }
 
 .visit-perks-box {
-  background: #dfd8cc;
+  background: #dfd7cb;
+  color: #171715;
   padding: 32px;
   border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .visit-perks-box h4 {
-  font: 500 16px var(--font-serif);
+  font: 600 17px var(--font-serif);
   margin: 0 0 16px;
-  color: var(--ink);
+  color: #171715 !important;
 }
 
 .visit-perks-box ul {
@@ -2217,7 +2252,7 @@ footer {
   align-items: flex-start;
   font-size: 13px;
   line-height: 1.5;
-  color: #3f3b35;
+  color: #2b2722 !important;
 }
 
 .visit-perks-box li i {
@@ -2228,21 +2263,23 @@ footer {
 }
 
 .visit-scheduler-form {
-  background: #f7f3ec;
-  border: 1px solid var(--line);
+  background: #ffffff;
+  color: #171715;
+  border: 1px solid rgba(23, 23, 21, 0.14);
   padding: 44px;
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.06);
 }
 
 .form-header h3 {
-  font: 500 32px var(--font-serif);
+  font: 600 32px var(--font-serif);
+  color: #171715 !important;
   margin: 4px 0 8px;
 }
 
 .form-header p {
   font-size: 14px;
   line-height: 1.55;
-  color: #5d564e;
+  color: #4a443d !important;
   margin-bottom: 28px;
 }
 
@@ -2252,7 +2289,7 @@ footer {
   gap: 12px;
   margin: 28px 0 16px;
   padding-bottom: 8px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid rgba(23, 23, 21, 0.12);
 }
 
 .form-section-title span {
@@ -2261,13 +2298,14 @@ footer {
   background: rgba(169, 85, 59, 0.12);
   padding: 2px 6px;
   border-radius: 3px;
+  font-weight: 600;
 }
 
 .form-section-title h4 {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   margin: 0;
-  color: var(--ink);
+  color: #171715 !important;
 }
 
 .form-row-2 {
@@ -2284,7 +2322,8 @@ footer {
   font: 11px var(--font-mono);
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: #554e46;
+  color: #443e37 !important;
+  font-weight: 600;
   gap: 6px;
 }
 
@@ -2292,11 +2331,12 @@ footer {
 .visit-date-input,
 .full-label textarea {
   padding: 12px 14px;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(23, 23, 21, 0.22);
   background: #fbf9f5;
   font-family: var(--font-sans);
   font-size: 14px;
-  color: var(--ink);
+  color: #171715 !important;
+  font-weight: 500;
   outline: none;
   transition: border-color 0.2s ease;
 }
@@ -2304,8 +2344,8 @@ footer {
 .form-row-2 input:focus,
 .visit-date-input:focus,
 .full-label textarea:focus {
-  border-color: var(--ink);
-  background: #fff;
+  border-color: #171715;
+  background: #ffffff;
 }
 
 .visit-checkbox-group {
@@ -2323,7 +2363,8 @@ footer {
   align-items: center;
   gap: 10px;
   font-size: 13px;
-  color: #38342e;
+  color: #26221d !important;
+  font-weight: 500;
   cursor: pointer;
   user-select: none;
 }
@@ -2345,7 +2386,7 @@ footer {
 /* Confirmation Ticket Card */
 .visit-confirmation-card {
   background: #fbf9f5;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(23, 23, 21, 0.14);
   padding: 48px;
   box-shadow: 0 16px 50px rgba(0, 0, 0, 0.08);
 }
@@ -2356,16 +2397,18 @@ footer {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   margin-bottom: 12px;
+  font-weight: 600;
 }
 
 .visit-confirmation-card h2 {
-  font: 500 clamp(32px, 3.5vw, 44px) var(--font-serif);
+  font: 600 clamp(32px, 3.5vw, 44px) var(--font-serif);
+  color: #171715 !important;
   margin: 0 0 8px;
 }
 
 .conf-ref {
   font-size: 14px;
-  color: #635b52;
+  color: #554e45 !important;
   margin-bottom: 30px;
 }
 
@@ -2382,22 +2425,22 @@ footer {
 .conf-summary-grid div small {
   display: block;
   font: 10px var(--font-mono);
-  color: #7b7267;
+  color: #696259 !important;
   text-transform: uppercase;
 }
 
 .conf-summary-grid div span {
   display: block;
   font-size: 14px;
-  font-weight: 500;
-  color: var(--ink);
+  font-weight: 600;
+  color: #171715 !important;
   margin-top: 4px;
 }
 
 .conf-notice {
   font-size: 13px;
   line-height: 1.6;
-  color: #4c463f;
+  color: #38342d !important;
   background: rgba(169, 85, 59, 0.1);
   border-left: 3px solid var(--clay);
   padding: 14px 18px;
