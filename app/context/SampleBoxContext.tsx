@@ -23,23 +23,34 @@ export function SampleBoxProvider({ children }: { children: React.ReactNode }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [requestModalOpen, setRequestModalOpen] = useState(false);
 
-  // Default seed with 2 items for initial discovery if empty
+  const [mounted, setMounted] = useState(false);
+
+  // Load from localStorage on mount
   useEffect(() => {
     const saved = localStorage.getItem("coro_sample_box");
     if (saved) {
       try {
-        setSamples(JSON.parse(saved));
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setSamples(parsed);
+        } else {
+          setSamples([MATERIALS_DATA[0], MATERIALS_DATA[2]]);
+        }
       } catch (e) {
         setSamples([MATERIALS_DATA[0], MATERIALS_DATA[2]]);
       }
     } else {
       setSamples([MATERIALS_DATA[0], MATERIALS_DATA[2]]);
     }
+    setMounted(true);
   }, []);
 
+  // Save to localStorage only after initial mount
   useEffect(() => {
-    localStorage.setItem("coro_sample_box", JSON.stringify(samples));
-  }, [samples]);
+    if (mounted) {
+      localStorage.setItem("coro_sample_box", JSON.stringify(samples));
+    }
+  }, [samples, mounted]);
 
   const addSample = (material: MaterialItem): boolean => {
     if (samples.find((s) => s.id === material.id)) {

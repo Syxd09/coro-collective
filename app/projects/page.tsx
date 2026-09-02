@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { PROJECT_CASE_STUDIES, STUDIO_INFO } from "../data/materialsData";
@@ -67,9 +68,9 @@ export default function ProjectsPage() {
         <p style={{ maxWidth: "500px", margin: "0 auto 30px", fontSize: "15px", lineHeight: "1.6" }}>
           Our technical team in Mahadevapura assists with aggregate sampling, metal trim details, and site mockups.
         </p>
-        <a className="button dark" href="/contact">
+        <Link className="button dark" href="/contact">
           Schedule Technical Consultation ↗
-        </a>
+        </Link>
       </section>
 
       <Footer />

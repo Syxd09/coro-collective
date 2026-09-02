@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import { ProjectsSection } from "./components/ProjectsSection";
 import { MATERIALS_DATA, STUDIO_INFO, MaterialItem } from "./data/materialsData";
@@ -25,9 +27,8 @@ export default function Home() {
     "daylight"
   );
   const [heroIndex, setHeroIndex] = useState(0);
-  const [scrolled, setScrolled] = useState(false);
 
-  const { toggleSample, isSampleAdded, setIsDrawerOpen } = useSampleBox();
+  const { toggleSample, isSampleAdded } = useSampleBox();
 
   useEffect(() => {
     const timer = window.setInterval(
@@ -35,13 +36,6 @@ export default function Home() {
       5600
     );
     return () => window.clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    const updateNav = () => setScrolled(window.scrollY > 60);
-    updateNav();
-    window.addEventListener("scroll", updateNav, { passive: true });
-    return () => window.removeEventListener("scroll", updateNav);
   }, []);
 
   const handleMaterialChange = (mat: MaterialItem) => {
@@ -65,29 +59,12 @@ export default function Home() {
           ))}
         </div>
 
-        <nav className={`home-nav ${scrolled ? "scrolled" : ""}`}>
-          <a className="wordmark" href="#top">
-            CORO<span>®</span>
-          </a>
-          <div className="inner-links">
-            <a href="/collections">Collections</a>
-            <a href="/material-playground">Playground</a>
-            <a href="/projects">Projects</a>
-            <a href="/visit">Visit Studio</a>
-            <a href="/contact">Contact</a>
-            <button
-              className="sample-box-badge-btn"
-              onClick={() => setIsDrawerOpen(true)}
-            >
-              <span>Sample Tray</span>
-            </button>
-          </div>
-        </nav>
+        <Nav light />
 
         <div className="hero-grain" />
 
         <div className="hero-copy">
-          <p className="eyebrow">Crafted Collective · Mahadevapura, Bengaluru</p>
+          <p className="eyebrow" style={{ color: "#d9d1c7" }}>Crafted Collective · Mahadevapura, Bengaluru</p>
           <h1>
             Explore<br />
             <i>possibility.</i>
@@ -99,9 +76,9 @@ export default function Home() {
             <a className="button light" href="#playground">
               Enter Playground <b>↘</b>
             </a>
-            <a className="text-link" href="#collections">
+            <Link className="text-link" href="/collections" style={{ color: "#fff" }}>
               Explore 8 Material Families <span>→</span>
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -194,9 +171,9 @@ export default function Home() {
                 <em>{tag}</em>
               </div>
               <p>{copy}</p>
-              <a className="button light" href="/visit" style={{ padding: "10px 14px" }}>
+              <Link className="button light" href="/visit" style={{ padding: "10px 14px" }}>
                 Explore ↗
-              </a>
+              </Link>
             </article>
           ))}
         </div>
@@ -328,9 +305,9 @@ export default function Home() {
                     ? "✓ In Sample Box"
                     : "+ Add to Sample Box"}
                 </button>
-                <a className="text-link" href="/contact" style={{ color: "#fff" }}>
+                <Link className="text-link" href="/contact" style={{ color: "#fff" }}>
                   Discuss technical drawing ↗
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -356,7 +333,7 @@ export default function Home() {
               <img src={item.image} alt={item.name} />
               <div className="card-shade" />
               <div className="card-top">
-                <span>0{index + 1} · {item.code}</span>
+                <span>0{index + 1}</span>
                 <span>{item.category}</span>
               </div>
               <div className="card-bottom">
@@ -382,7 +359,7 @@ export default function Home() {
           <span>Mateos™</span>
           <i>·</i>
           <span>Velare™</span>
-          <a href="/collections">View Complete Material Catalog →</a>
+          <Link href="/collections">View Complete Material Catalog →</Link>
         </div>
       </section>
 
@@ -411,9 +388,9 @@ export default function Home() {
           </p>
 
           <div className="actions">
-            <a className="button dark" href="/contact">
+            <Link className="button dark" href="/contact">
               Book Studio Appointment <b>↗</b>
-            </a>
+            </Link>
             <a
               className="text-link"
               href={STUDIO_INFO.instagram}

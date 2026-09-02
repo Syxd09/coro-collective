@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSampleBox } from "../context/SampleBoxContext";
 
@@ -32,19 +33,19 @@ export function Nav({ light = false }: { light?: boolean }) {
           scrolled ? "scrolled" : ""
         }`}
       >
-        <a className="wordmark" href="/">
+        <Link className="wordmark" href="/">
           CORO<span>®</span>
-        </a>
+        </Link>
 
         <div className="inner-links">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className={pathname === link.href ? "active" : ""}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
 
           {/* Sample Box Trigger Button */}
@@ -62,6 +63,7 @@ export function Nav({ light = false }: { light?: boolean }) {
           <button
             className="sample-box-badge-btn mobile-only"
             onClick={() => setIsDrawerOpen(true)}
+            aria-label="Open Sample Tray"
           >
             <small>{samples.length}</small>
           </button>
@@ -80,24 +82,39 @@ export function Nav({ light = false }: { light?: boolean }) {
       {mobileMenuOpen && (
         <div className="mobile-menu-overlay">
           <div className="mobile-menu-content">
-            <a className="wordmark" href="/">
-              CORO<span>®</span>
-            </a>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <Link className="wordmark" href="/" onClick={() => setMobileMenuOpen(false)}>
+                CORO<span>®</span>
+              </Link>
+              <button
+                className="menu-toggle-btn"
+                onClick={() => setMobileMenuOpen(false)}
+                style={{ color: "#fff", fontSize: "28px" }}
+                aria-label="Close menu"
+              >
+                ✕
+              </button>
+            </div>
+
             <div className="mobile-menu-links">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.label} <span>→</span>
-                </a>
+                </Link>
               ))}
             </div>
+
             <div className="mobile-menu-footer">
-              <p>Mahadevapura Studio, Bengaluru</p>
+              <p style={{ margin: "0 0 16px", fontSize: "13px", color: "#bfae9b" }}>
+                Mahadevapura Studio, Bengaluru
+              </p>
               <button
                 className="button light"
+                style={{ width: "100%", justifyContent: "center" }}
                 onClick={() => {
                   setMobileMenuOpen(false);
                   setIsDrawerOpen(true);

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { PROJECT_CASE_STUDIES } from "../data/materialsData";
 
 export function ProjectsSection() {
@@ -56,9 +57,9 @@ export function ProjectsSection() {
           <h3>Have an architectural brief or surface requirement?</h3>
           <p>Bring your floor plans or sample requests to our Mahadevapura studio.</p>
         </div>
-        <a className="button dark" href="/contact">
+        <Link className="button dark" href="/contact">
           Initiate Project Brief ↗
-        </a>
+        </Link>
       </div>
     </section>
   );

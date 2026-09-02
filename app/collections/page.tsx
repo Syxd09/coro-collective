@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { MATERIALS_DATA, MaterialItem } from "../data/materialsData";
@@ -90,7 +91,7 @@ export default function Collections() {
                 {isSampleAdded(item.id) ? "✓ In Sample Box" : "+ Add Sample"}
               </button>
 
-              <a
+              <Link
                 href="/contact"
                 aria-label={`Discuss ${item.name}`}
                 style={{
@@ -104,7 +105,7 @@ export default function Collections() {
                 }}
               >
                 ↗
-              </a>
+              </Link>
             </div>
           </article>
         ))}

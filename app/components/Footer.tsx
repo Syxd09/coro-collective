@@ -1,12 +1,13 @@
+import Link from "next/link";
 import { STUDIO_INFO } from "../data/materialsData";
 
 export function Footer() {
   return (
     <footer>
       <div className="footer-brand">
-        <a className="wordmark" href="/">
+        <Link className="wordmark" href="/">
           CORO<span>®</span>
-        </a>
+        </Link>
         <p className="footer-tagline">
           Crafted Collective
           <br />
@@ -20,11 +21,11 @@ export function Footer() {
       <div className="footer-links-grid">
         <div>
           <p className="footer-col-title">Navigation</p>
-          <a href="/collections">Material Collections</a>
-          <a href="/material-playground">Playground Studio</a>
-          <a href="/projects">Architectural Projects</a>
-          <a href="/visit">Visit Experience Centre</a>
-          <a href="/contact">Contact & Consultations</a>
+          <Link href="/collections">Material Collections</Link>
+          <Link href="/material-playground">Playground Studio</Link>
+          <Link href="/projects">Architectural Projects</Link>
+          <Link href="/visit">Visit Experience Centre</Link>
+          <Link href="/contact">Contact & Consultations</Link>
         </div>
 
         <div>

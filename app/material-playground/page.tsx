@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { MATERIALS_DATA, MaterialItem } from "../data/materialsData";
@@ -136,9 +137,9 @@ export default function Playground() {
                   ? "✓ In Sample Box"
                   : "+ Add to Sample Box"}
               </button>
-              <a className="button dark" href="/contact">
+              <Link className="button dark" href="/contact">
                 Initiate Project Spec ↗
-              </a>
+              </Link>
             </div>
           </div>
         </div>

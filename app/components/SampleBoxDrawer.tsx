@@ -1,6 +1,5 @@
-"use client";
-
 import React, { useState } from "react";
+import Link from "next/link";
 import { useSampleBox } from "../context/SampleBoxContext";
 import { STUDIO_INFO } from "../data/materialsData";
 
@@ -70,13 +69,13 @@ export function SampleBoxDrawer() {
                 Explore our collections or material playground and add up to 4
                 specimen swatches for tactile physical review.
               </p>
-              <a
+              <Link
                 href="/collections"
                 onClick={() => setIsDrawerOpen(false)}
                 className="button dark"
               >
                 Browse Collections ↗
-              </a>
+              </Link>
             </div>
           ) : (
             <div className="sample-list">

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Nav } from "../components/Nav";
 import { Footer } from "../components/Footer";
 import { STUDIO_INFO } from "../data/materialsData";
@@ -17,9 +18,9 @@ export default function Visit() {
           <p>
             Step into our studio in <strong>Mahadevapura, Bengaluru</strong>. Compare finishes, study aggregate light reflection, and curate physical sample boxes in person.
           </p>
-          <a className="button light" href="/contact">
+          <Link className="button light" href="/contact">
             Schedule Studio Visit ↗
-          </a>
+          </Link>
         </div>
       </section>
 
