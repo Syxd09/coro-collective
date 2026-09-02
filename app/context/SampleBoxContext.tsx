@@ -19,7 +19,10 @@ interface SampleBoxContextType {
 const SampleBoxContext = createContext<SampleBoxContextType | undefined>(undefined);
 
 export function SampleBoxProvider({ children }: { children: React.ReactNode }) {
-  const [samples, setSamples] = useState<MaterialItem[]>([]);
+  const [samples, setSamples] = useState<MaterialItem[]>([
+    MATERIALS_DATA[0],
+    MATERIALS_DATA[2],
+  ]);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [requestModalOpen, setRequestModalOpen] = useState(false);
 

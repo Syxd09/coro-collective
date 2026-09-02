@@ -197,9 +197,11 @@ export default function Home() {
             <p className="mini-label">01 / Choose a material family</p>
             {MATERIALS_DATA.slice(0, 5).map((item) => (
               <button
+                type="button"
                 key={item.id}
                 onClick={() => handleMaterialChange(item)}
                 className={selectedMaterial.id === item.id ? "selected" : ""}
+                aria-pressed={selectedMaterial.id === item.id}
               >
                 <span>{item.name}</span>
                 <small>{item.tagline}</small>
@@ -212,11 +214,13 @@ export default function Home() {
               <div className="finish-pills">
                 {selectedMaterial.finishes.map((finish) => (
                   <button
+                    type="button"
                     key={finish}
                     className={`finish-pill-btn ${
                       selectedFinish === finish ? "active" : ""
                     }`}
                     onClick={() => setSelectedFinish(finish)}
+                    aria-pressed={selectedFinish === finish}
                   >
                     {finish}
                   </button>
@@ -229,9 +233,11 @@ export default function Home() {
               {["Hospitality", "Residential", "Workplace", "Outdoor Pavilion"].map(
                 (item) => (
                   <button
+                    type="button"
                     onClick={() => setScene(item)}
                     className={scene === item ? "active" : ""}
                     key={item}
+                    aria-pressed={scene === item}
                   >
                     {item}
                   </button>
@@ -298,6 +304,7 @@ export default function Home() {
 
               <div className="visual-actions">
                 <button
+                  type="button"
                   className="button light"
                   onClick={() => toggleSample(selectedMaterial)}
                 >
