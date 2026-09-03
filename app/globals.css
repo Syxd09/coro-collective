@@ -2127,8 +2127,57 @@ footer {
 }
 
 /* ==========================================================================
-   15. KEYFRAMES & ANIMATIONS
+   15. KEYFRAMES & EDITORIAL PAGE TRANSITIONS
    ========================================================================== */
+.page-route-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--clay), #d67a5b, #e8b196, var(--clay));
+  z-index: 9999;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+
+.page-route-line.active {
+  animation: routeLineSweep 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.page-transition-container {
+  animation: pageEditorialReveal 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+@keyframes pageEditorialReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes routeLineSweep {
+  0% {
+    opacity: 1;
+    transform: scaleX(0);
+  }
+  60% {
+    opacity: 1;
+    transform: scaleX(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(1);
+  }
+}
+
 @keyframes slowZoom {
   to {
     transform: scale(1.07);

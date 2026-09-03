@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { SampleBoxProvider } from "./context/SampleBoxContext";
 import { SampleBoxDrawer } from "./components/SampleBoxDrawer";
+import { PageTransition } from "./components/PageTransition";
 
 export const metadata: Metadata = {
   title: "CORO — Crafted Collective | Architectural Surface Studio Bengaluru",
@@ -15,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <SampleBoxProvider>
-          {children}
+          <PageTransition>{children}</PageTransition>
           <SampleBoxDrawer />
         </SampleBoxProvider>
       </body>
