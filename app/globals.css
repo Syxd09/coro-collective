@@ -214,40 +214,30 @@ i {
 }
 
 /* ==========================================================================
-   05. NAVIGATION (HOME & INNER PAGES)
+   05. NAVIGATION (HOME & ALL INNER PAGES - UNIFIED STICKY)
    ========================================================================== */
 .inner-nav {
   position: sticky;
   top: 0;
-  z-index: 60;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 22px 5vw;
+  padding: 18px 5vw;
   font-size: 13px;
-  background: var(--paper);
+  background: rgba(237, 232, 223, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   color: var(--ink);
   border-bottom: 1px solid var(--line);
-  transition: background-color 0.35s ease, color 0.35s ease, padding 0.35s ease;
-}
-
-.inner-nav.pale {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: transparent;
-  border-color: rgba(255, 255, 255, 0.18);
-  color: #f3ece2;
+  transition: padding 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .inner-nav.scrolled {
-  background: #f4f0e9 !important;
-  color: var(--ink) !important;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  border-color: var(--line) !important;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding-top: 14px;
+  padding-bottom: 14px;
+  background: rgba(244, 240, 233, 0.98);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
 .inner-links {

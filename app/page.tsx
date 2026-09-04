@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <main>
-      <Nav light />
+      <Nav />
 
       {/* HERO SECTION */}
       <section className="hero" id="top">

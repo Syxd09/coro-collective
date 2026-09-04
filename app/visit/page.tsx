@@ -62,7 +62,7 @@ export default function VisitPage() {
 
   return (
     <main className="visit-page">
-      <Nav light />
+      <Nav />
 
       {/* VISIT HERO HEADER */}
       <section className="visit-hero">

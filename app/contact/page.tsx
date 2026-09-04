@@ -24,7 +24,7 @@ export default function Contact() {
 
   return (
     <main className="contact-page">
-      <Nav light />
+      <Nav />
 
       <section className="contact-grid">
         <header>
