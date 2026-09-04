@@ -192,7 +192,7 @@ export default function Home() {
         </div>
 
         <div className="collection-grid">
-          {MATERIALS_DATA.slice(0, 6).map((item, index) => (
+          {MATERIALS_DATA.map((item, index) => (
             <div className={`collection-card ${item.tone}`} key={item.id}>
               <img src={item.image} alt={item.name} />
               <div className="card-shade" />
@@ -204,6 +204,7 @@ export default function Home() {
                 <h3>CORO {item.name}</h3>
                 <p>{item.tagline}</p>
                 <button
+                  type="button"
                   className={`card-sample-btn ${
                     isSampleAdded(item.id) ? "added" : ""
                   }`}
@@ -218,12 +219,10 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="more-collections">
-          <p>Also in the collective:</p>
-          <span>Mateos™</span>
-          <i>·</i>
-          <span>Velare™</span>
-          <Link href="/collections">View Complete Material Catalog →</Link>
+        <div className="more-collections" style={{ marginTop: "40px", textAlign: "center" }}>
+          <Link className="button dark" href="/collections">
+            Explore Full Material Specifications & Catalog →
+          </Link>
         </div>
       </section>
 

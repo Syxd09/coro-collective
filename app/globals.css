@@ -626,13 +626,32 @@ i {
   flex-direction: column;
 }
 
+.material-family-list {
+  display: flex;
+  flex-direction: column;
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 6px;
+  margin-bottom: 20px;
+}
+
+.material-family-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.material-family-list::-webkit-scrollbar-thumb {
+  background: rgba(23, 23, 21, 0.2);
+  border-radius: 4px;
+}
+
+.material-family-list button,
 .material-pane > button {
   background: transparent;
   border: 0;
-  border-bottom: 1px solid rgba(20, 20, 18, 0.18);
+  border-bottom: 1px solid rgba(20, 20, 18, 0.15);
   border-left: 4px solid transparent;
   text-align: left;
-  padding: 18px 12px;
+  padding: 14px 12px;
   display: grid;
   grid-template-columns: 1fr 1.2fr 24px;
   color: #666;
@@ -642,12 +661,14 @@ i {
   transition: all 0.2s ease;
 }
 
+.material-family-list button:hover,
 .material-pane > button:hover {
   color: #171715;
   background: rgba(0, 0, 0, 0.03);
   padding-left: 16px;
 }
 
+.material-family-list button.selected,
 .material-pane > button.selected {
   color: #171715;
   font-weight: 600;
@@ -656,16 +677,19 @@ i {
   padding-left: 16px;
 }
 
+.material-family-list button span,
 .material-pane > button span {
-  font: 500 24px var(--font-serif);
+  font: 500 22px var(--font-serif);
 }
 
+.material-family-list button small,
 .material-pane > button small {
   font: 11px var(--font-mono);
   align-self: center;
   color: #69635b;
 }
 
+.material-family-list button b,
 .material-pane > button b {
   font-size: 16px;
   font-weight: 400;
@@ -673,6 +697,7 @@ i {
   transition: transform 0.2s ease;
 }
 
+.material-family-list button.selected b,
 .material-pane > button.selected b {
   color: var(--clay);
   font-weight: 700;

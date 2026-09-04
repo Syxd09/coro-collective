@@ -39,23 +39,25 @@ export function MaterialPlayground() {
 
       <div className="playground-shell">
         <div className="material-pane">
-          <p className="mini-label">01 / Choose a material family</p>
-          {MATERIALS_DATA.slice(0, 5).map((item) => {
-            const isSelected = selectedMaterial.id === item.id;
-            return (
-              <button
-                type="button"
-                key={item.id}
-                onClick={() => handleMaterialChange(item)}
-                className={isSelected ? "selected" : ""}
-                aria-pressed={isSelected}
-              >
-                <span>{item.name}</span>
-                <small>{item.tagline}</small>
-                <b>→</b>
-              </button>
-            );
-          })}
+          <p className="mini-label">01 / Choose a material family (All 8 Families)</p>
+          <div className="material-family-list">
+            {MATERIALS_DATA.map((item) => {
+              const isSelected = selectedMaterial.id === item.id;
+              return (
+                <button
+                  type="button"
+                  key={item.id}
+                  onClick={() => handleMaterialChange(item)}
+                  className={isSelected ? "selected" : ""}
+                  aria-pressed={isSelected}
+                >
+                  <span>{item.name}</span>
+                  <small>{item.tagline}</small>
+                  <b>→</b>
+                </button>
+              );
+            })}
+          </div>
 
           <div className="finish-selector">
             <p className="mini-label">02 / Select tactile finish</p>
