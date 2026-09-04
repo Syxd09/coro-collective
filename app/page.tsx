@@ -68,25 +68,32 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-caption">
-          <span>0{heroIndex + 1} — 04</span>
-          <span>Materials stop being samples and start becoming space.</span>
-        </div>
+        <div className="hero-footer-bar">
+          <div className="hero-caption">
+            <span className="hero-slide-num">0{heroIndex + 1} — 04</span>
+            <span className="hero-manifesto">
+              Materials stop being samples and start becoming space.
+            </span>
+          </div>
 
-        <div className="hero-pagination">
-          {heroImages.map((_, index) => (
-            <button
-              key={index}
-              aria-label={`Show slide ${index + 1}`}
-              className={heroIndex === index ? "active" : ""}
-              onClick={() => setHeroIndex(index)}
-            />
-          ))}
-        </div>
+          <div className="hero-controls">
+            <div className="hero-pagination">
+              {heroImages.map((_, index) => (
+                <button
+                  type="button"
+                  key={index}
+                  aria-label={`Show slide ${index + 1}`}
+                  className={heroIndex === index ? "active" : ""}
+                  onClick={() => setHeroIndex(index)}
+                />
+              ))}
+            </div>
 
-        <a className="scroll-cue" href="#intro">
-          Scroll to discover <span>↓</span>
-        </a>
+            <a className="scroll-cue" href="#intro">
+              Scroll to discover <span>↓</span>
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* INTRO SECTION */}

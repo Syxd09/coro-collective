@@ -415,31 +415,55 @@ i {
   pointer-events: auto;
 }
 
-.hero-caption {
-  z-index: 10;
+.hero-footer-bar {
   position: absolute;
-  bottom: 30px;
+  bottom: 28px;
   left: 4vw;
   right: 4vw;
-  font: 10px var(--font-mono);
+  z-index: 20;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+.hero-caption {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font: 10px var(--font-mono);
   color: #d9d1c7;
-  pointer-events: none;
+  max-width: 55%;
+}
+
+.hero-slide-num {
+  color: var(--clay);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.hero-manifesto {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #ded8cf;
+}
+
+.hero-controls {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  white-space: nowrap;
 }
 
 .hero-pagination {
-  position: absolute;
-  z-index: 15;
-  right: 14vw;
-  bottom: 34px;
   display: flex;
   gap: 7px;
-  pointer-events: auto;
+  align-items: center;
 }
 
 .hero-pagination button {
-  height: 6px;
+  height: 5px;
   width: 22px;
   border: 0;
   background: rgba(238, 232, 222, 0.4);
@@ -459,20 +483,24 @@ i {
 }
 
 .scroll-cue {
-  position: absolute;
-  right: 4vw;
-  bottom: 27px;
-  z-index: 15;
+  display: inline-flex;
+  align-items: center;
   text-transform: uppercase;
   font: 10px var(--font-mono);
   letter-spacing: 0.08em;
+  color: #f4eee5;
   cursor: pointer;
   pointer-events: auto;
+  transition: opacity 0.2s;
+}
+
+.scroll-cue:hover {
+  opacity: 0.8;
 }
 
 .scroll-cue span {
-  font-size: 17px;
-  margin-left: 8px;
+  font-size: 14px;
+  margin-left: 6px;
 }
 
 /* ==========================================================================
@@ -2521,6 +2549,14 @@ footer {
     left: 7vw;
     right: 7vw;
     bottom: 16vh;
+  }
+  .hero-footer-bar {
+    left: 6vw;
+    right: 6vw;
+    bottom: 20px;
+  }
+  .hero-caption .hero-manifesto {
+    display: none;
   }
   .hero h1 {
     font-size: clamp(54px, 15vw, 92px);
