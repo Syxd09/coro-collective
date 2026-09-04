@@ -612,27 +612,33 @@ i {
 }
 
 .playground-shell {
-  margin-top: 60px;
+  margin-top: 50px;
   display: grid;
-  grid-template-columns: 40% 60%;
-  min-height: 600px;
+  grid-template-columns: 42% 58%;
+  height: 640px;
+  max-height: 640px;
   background: #e9e1d5;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
 }
 
 .material-pane {
-  padding: 36px 32px;
+  padding: 28px 28px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  overflow: hidden;
 }
 
 .material-family-list {
   display: flex;
   flex-direction: column;
-  max-height: 480px;
+  height: 255px;
+  max-height: 255px;
   overflow-y: auto;
   padding-right: 6px;
-  margin-bottom: 20px;
+  margin-top: 6px;
+  margin-bottom: 10px;
 }
 
 .material-family-list::-webkit-scrollbar {
@@ -640,7 +646,7 @@ i {
 }
 
 .material-family-list::-webkit-scrollbar-thumb {
-  background: rgba(23, 23, 21, 0.2);
+  background: rgba(23, 23, 21, 0.25);
   border-radius: 4px;
 }
 
@@ -648,12 +654,13 @@ i {
 .material-pane > button {
   background: transparent;
   border: 0;
-  border-bottom: 1px solid rgba(20, 20, 18, 0.15);
+  border-bottom: 1px solid rgba(20, 20, 18, 0.14);
   border-left: 4px solid transparent;
   text-align: left;
-  padding: 14px 12px;
+  padding: 10px 10px;
   display: grid;
-  grid-template-columns: 1fr 1.2fr 24px;
+  grid-template-columns: 1fr 1.2fr 20px;
+  align-items: center;
   color: #666;
   cursor: pointer;
   pointer-events: auto;
@@ -665,7 +672,7 @@ i {
 .material-pane > button:hover {
   color: #171715;
   background: rgba(0, 0, 0, 0.03);
-  padding-left: 16px;
+  padding-left: 14px;
 }
 
 .material-family-list button.selected,
@@ -674,24 +681,24 @@ i {
   font-weight: 600;
   background: rgba(23, 23, 21, 0.07);
   border-left-color: var(--clay);
-  padding-left: 16px;
+  padding-left: 14px;
 }
 
 .material-family-list button span,
 .material-pane > button span {
-  font: 500 22px var(--font-serif);
+  font: 500 19px var(--font-serif);
 }
 
 .material-family-list button small,
 .material-pane > button small {
-  font: 11px var(--font-mono);
+  font: 10px var(--font-mono);
   align-self: center;
   color: #69635b;
 }
 
 .material-family-list button b,
 .material-pane > button b {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   text-align: right;
   transition: transform 0.2s ease;
@@ -706,18 +713,18 @@ i {
 
 .finish-selector,
 .scene-buttons {
-  margin-top: 24px;
+  margin-top: 14px;
 }
 
 .finish-pills {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
-  margin-top: 10px;
+  margin-top: 6px;
 }
 
 .finish-pill-btn {
-  padding: 8px 14px;
+  padding: 6px 12px;
   border: 1px solid var(--line);
   background: transparent;
   font-size: 11px;
@@ -741,23 +748,23 @@ i {
 }
 
 .scene-buttons {
-  margin-top: 24px;
+  margin-top: 14px;
 }
 
 .scene-buttons-group {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
-  margin-top: 10px;
+  margin-top: 6px;
 }
 
 .scene-buttons button {
   border: 1px solid transparent;
   background: none;
-  padding: 6px 12px;
-  margin-right: 6px;
-  margin-top: 6px;
-  font-size: 12px;
+  padding: 5px 10px;
+  margin-right: 4px;
+  margin-top: 4px;
+  font-size: 11px;
   color: #69645e;
   cursor: pointer;
   pointer-events: auto;
@@ -785,8 +792,9 @@ i {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 42px;
+  padding: 36px;
   color: #f7f2eb;
+  height: 100%;
 }
 
 .visual-pane-img {

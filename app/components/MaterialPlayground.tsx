@@ -39,7 +39,7 @@ export function MaterialPlayground() {
 
       <div className="playground-shell">
         <div className="material-pane">
-          <p className="mini-label">01 / Choose a material family (All 8 Families)</p>
+          <p className="mini-label">01 / Choose a material family (Scroll for all 8)</p>
           <div className="material-family-list">
             {MATERIALS_DATA.map((item) => {
               const isSelected = selectedMaterial.id === item.id;
