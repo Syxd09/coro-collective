@@ -60,7 +60,7 @@ export function SampleBoxProvider({ children }: { children: React.ReactNode }) {
       return false;
     }
     if (samples.length >= 4) {
-      alert("Sample box limit reached (Maximum 4 materials per sample request box).");
+      setIsDrawerOpen(true);
       return false;
     }
     setSamples((prev) => [...prev, material]);

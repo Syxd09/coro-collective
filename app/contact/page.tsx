@@ -71,50 +71,55 @@ export default function Contact() {
           </div>
         ) : (
           <form onSubmit={handleSubmit}>
-            <label>
-              Your Name *
+            <div>
+              <label htmlFor="contact-name">Your Name *</label>
               <input
+                id="contact-name"
                 required
                 placeholder="e.g. Rahul Sharma"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
               />
-            </label>
+            </div>
 
-            <label>
-              Company / Studio
+            <div>
+              <label htmlFor="contact-studio">Company / Studio</label>
               <input
+                id="contact-studio"
                 placeholder="e.g. Studio Earthform"
                 value={form.studio}
                 onChange={(e) => setForm({ ...form, studio: e.target.value })}
               />
-            </label>
+            </div>
 
-            <label>
-              Email Address *
+            <div>
+              <label htmlFor="contact-email">Email Address *</label>
               <input
+                id="contact-email"
                 required
                 type="email"
                 placeholder="you@example.com"
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
               />
-            </label>
+            </div>
 
-            <label>
-              Phone Number *
+            <div>
+              <label htmlFor="contact-phone">Phone Number *</label>
               <input
+                id="contact-phone"
                 required
                 type="tel"
                 placeholder="+91 98765 43210"
                 value={form.phone}
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
               />
-            </label>
+            </div>
 
             <div className="full">
-              <label>Primary Focus</label>
+              <label htmlFor="contact-interest">Primary Focus</label>
               <CustomSelect
+                id="contact-interest"
                 value={form.interest}
                 onChange={(val) => setForm({ ...form, interest: val })}
                 options={[
@@ -130,15 +135,16 @@ export default function Contact() {
               />
             </div>
 
-            <label className="full">
-              Project Details & Timeline
+            <div className="full">
+              <label htmlFor="contact-message">Project Details & Timeline</label>
               <textarea
+                id="contact-message"
                 placeholder="Tell us a little about the project location, approximate area, or specific material family you want to explore..."
                 rows={5}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
               />
-            </label>
+            </div>
 
             <button className="button dark" type="submit" style={{ gridColumn: "1 / -1", width: "max-content" }}>
               Send Consultation Brief ↗

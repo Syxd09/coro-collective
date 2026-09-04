@@ -218,9 +218,10 @@ export default function VisitPage() {
                 </div>
 
                 <div className="form-row-2">
-                  <label>
-                    Preferred Date *
+                  <div>
+                    <label htmlFor="visit-date">Preferred Date *</label>
                     <input
+                      id="visit-date"
                       type="date"
                       required
                       min={minDateStr}
@@ -228,11 +229,12 @@ export default function VisitPage() {
                       onChange={(e) => setVisitForm({ ...visitForm, visitDate: e.target.value })}
                       className="visit-date-input"
                     />
-                  </label>
+                  </div>
 
                   <div>
-                    <label>Preferred Time Slot *</label>
+                    <label htmlFor="visit-slot">Preferred Time Slot *</label>
                     <CustomSelect
+                      id="visit-slot"
                       value={visitForm.timeSlot}
                       onChange={(val) => setVisitForm({ ...visitForm, timeSlot: val })}
                       options={TIME_SLOTS.map((s) => s.time)}
@@ -249,8 +251,9 @@ export default function VisitPage() {
 
                 <div className="form-row-2">
                   <div>
-                    <label>Session Focus</label>
+                    <label htmlFor="visit-purpose">Session Focus</label>
                     <CustomSelect
+                      id="visit-purpose"
                       value={visitForm.purpose}
                       onChange={(val) => setVisitForm({ ...visitForm, purpose: val })}
                       options={SESSION_PURPOSES}
@@ -259,8 +262,9 @@ export default function VisitPage() {
                   </div>
 
                   <div>
-                    <label>Party / Group Size</label>
+                    <label htmlFor="visit-group">Party / Group Size</label>
                     <CustomSelect
+                      id="visit-group"
                       value={visitForm.groupSize}
                       onChange={(val) => setVisitForm({ ...visitForm, groupSize: val })}
                       options={GROUP_SIZES}
@@ -276,8 +280,9 @@ export default function VisitPage() {
                 </div>
 
                 <div className="visit-checkbox-group">
-                  <label className="checkbox-item">
+                  <label htmlFor="visit-plans" className="checkbox-item">
                     <input
+                      id="visit-plans"
                       type="checkbox"
                       checked={visitForm.bringingPlans}
                       onChange={(e) => setVisitForm({ ...visitForm, bringingPlans: e.target.checked })}
@@ -285,8 +290,9 @@ export default function VisitPage() {
                     <span>We will bring architectural CAD floor plans / moodboards</span>
                   </label>
 
-                  <label className="checkbox-item">
+                  <label htmlFor="visit-samples" className="checkbox-item">
                     <input
+                      id="visit-samples"
                       type="checkbox"
                       checked={visitForm.needsSamples}
                       onChange={(e) => setVisitForm({ ...visitForm, needsSamples: e.target.checked })}
@@ -294,8 +300,9 @@ export default function VisitPage() {
                     <span>We would like to take physical curated sample swatches</span>
                   </label>
 
-                  <label className="checkbox-item">
+                  <label htmlFor="visit-site" className="checkbox-item">
                     <input
+                      id="visit-site"
                       type="checkbox"
                       checked={visitForm.hasActiveSite}
                       onChange={(e) => setVisitForm({ ...visitForm, hasActiveSite: e.target.checked })}
@@ -311,59 +318,66 @@ export default function VisitPage() {
                 </div>
 
                 <div className="form-row-2">
-                  <label>
-                    Full Name *
+                  <div>
+                    <label htmlFor="visit-name">Full Name *</label>
                     <input
+                      id="visit-name"
                       required
                       placeholder="e.g. Ar. Ananya Rao"
                       value={visitForm.name}
                       onChange={(e) => setVisitForm({ ...visitForm, name: e.target.value })}
                     />
-                  </label>
+                  </div>
 
-                  <label>
-                    Design Practice / Residence
+                  <div>
+                    <label htmlFor="visit-studio">Design Practice / Residence</label>
                     <input
+                      id="visit-studio"
                       placeholder="e.g. Atelier Studio / Indiranagar Home"
                       value={visitForm.studioOrHome}
                       onChange={(e) => setVisitForm({ ...visitForm, studioOrHome: e.target.value })}
                     />
-                  </label>
+                  </div>
                 </div>
 
                 <div className="form-row-2">
-                  <label>
-                    Email Address *
+                  <div>
+                    <label htmlFor="visit-email">Email Address *</label>
                     <input
+                      id="visit-email"
                       required
                       type="email"
                       placeholder="ananya@design.in"
                       value={visitForm.email}
                       onChange={(e) => setVisitForm({ ...visitForm, email: e.target.value })}
                     />
-                  </label>
+                  </div>
 
-                  <label>
-                    Contact Phone *
+                  <div>
+                    <label htmlFor="visit-phone">Contact Phone *</label>
                     <input
+                      id="visit-phone"
                       required
                       type="tel"
                       placeholder="+91 98450 12345"
                       value={visitForm.phone}
                       onChange={(e) => setVisitForm({ ...visitForm, phone: e.target.value })}
                     />
-                  </label>
+                  </div>
                 </div>
 
-                <label className="full-label">
-                  Special Notes / Specific Materials of Interest (Optional)
+                <div>
+                  <label htmlFor="visit-notes" className="full-label">
+                    Special Notes / Specific Materials of Interest (Optional)
+                  </label>
                   <textarea
+                    id="visit-notes"
                     rows={3}
                     placeholder="e.g. Interested in seeing kitchen island terrazzo slabs, bronze mesh doors for walk-in wardrobes..."
                     value={visitForm.specialNotes}
                     onChange={(e) => setVisitForm({ ...visitForm, specialNotes: e.target.value })}
                   />
-                </label>
+                </div>
 
                 <button
                   type="submit"

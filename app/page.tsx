@@ -10,11 +10,58 @@ import { InteriorsSection } from "./components/InteriorsSection";
 import { MATERIALS_DATA, STUDIO_INFO } from "./data/materialsData";
 import { useSampleBox } from "./context/SampleBoxContext";
 
-const heroImages = [
-  "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2000&q=90",
-  "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2000&q=90",
-  "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=90",
-  "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=2000&q=90",
+interface HeroSlide {
+  image: string;
+  eyebrow: string;
+  title: string;
+  titleItalic: string;
+  lede: string;
+  manifesto: string;
+  primaryCta: { label: string; href: string; icon: string };
+  secondaryCta: { label: string; href: string };
+}
+
+const HERO_SLIDES: HeroSlide[] = [
+  {
+    image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2000&q=90",
+    eyebrow: "Crafted Collective · Mahadevapura, Bengaluru",
+    title: "Explore",
+    titleItalic: "possibility.",
+    lede: "A material & product innovation experience centre for architects and spatial minds shaping space in Bengaluru and beyond.",
+    manifesto: "Materials stop being samples and start becoming space.",
+    primaryCta: { label: "Enter Playground", href: "#playground", icon: "↘" },
+    secondaryCta: { label: "Explore 8 Material Families", href: "/collections" },
+  },
+  {
+    image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2000&q=90",
+    eyebrow: "Turnkey Interiors & Joinery · Bespoke Living",
+    title: "Sculpt",
+    titleItalic: "living space.",
+    lede: "Monolithic terrazzo kitchen islands, custom wire-mesh joinery suites, and seamless solid surfaces executed for private homes.",
+    manifesto: "From raw aggregate formulation to turnkey architectural interior execution.",
+    primaryCta: { label: "Explore Interiors", href: "#interiors", icon: "↘" },
+    secondaryCta: { label: "Book Studio Consultation", href: "/visit" },
+  },
+  {
+    image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=90",
+    eyebrow: "Acoustic Engineering · Tactile Warmth",
+    title: "Calm",
+    titleItalic: "the room.",
+    lede: "Micro-perforated felt partitions, sculpted timber acoustic baffles, and textural sound-absorbing architectural surfaces.",
+    manifesto: "Acoustic engineering paired with warm tactile material honesty.",
+    primaryCta: { label: "View Material Specs", href: "/collections", icon: "↗" },
+    secondaryCta: { label: "Order Curated Samples", href: "/collections" },
+  },
+  {
+    image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=2000&q=90",
+    eyebrow: "In-Situ Terrazzo · Custom Aggregate Bar",
+    title: "Curate",
+    titleItalic: "raw earth.",
+    lede: "Formulate custom Italian marble chip blends, mineral matrix pigments, and monolithic cast floors directly with our laboratory.",
+    manifesto: "Custom aggregate mixology and technical site mockup testing in Bengaluru.",
+    primaryCta: { label: "Visit Experience Centre", href: "/visit", icon: "↗" },
+    secondaryCta: { label: "Schedule Project Spec", href: "/contact" },
+  },
 ];
 
 export default function Home() {
@@ -23,11 +70,13 @@ export default function Home() {
 
   useEffect(() => {
     const timer = window.setInterval(
-      () => setHeroIndex((index) => (index + 1) % heroImages.length),
+      () => setHeroIndex((index) => (index + 1) % HERO_SLIDES.length),
       5600
     );
     return () => window.clearInterval(timer);
   }, []);
+
+  const currentSlide = HERO_SLIDES[heroIndex];
 
   return (
     <main>
@@ -36,12 +85,12 @@ export default function Home() {
       {/* HERO SECTION */}
       <section className="hero" id="top">
         <div className="hero-slides">
-          {heroImages.map((image, index) => (
+          {HERO_SLIDES.map((slide, index) => (
             <div
-              key={image}
+              key={slide.image}
               className={`hero-slide ${heroIndex === index ? "current" : ""}`}
               style={{
-                backgroundImage: `linear-gradient(90deg,rgba(19,19,17,.78),rgba(19,19,17,.18)),url(${image})`,
+                backgroundImage: `linear-gradient(90deg,rgba(19,19,17,.78),rgba(19,19,17,.18)),url(${slide.image})`,
               }}
             />
           ))}
@@ -50,35 +99,49 @@ export default function Home() {
         <div className="hero-grain" />
 
         <div className="hero-copy">
-          <p className="eyebrow" style={{ color: "#d9d1c7" }}>Crafted Collective · Mahadevapura, Bengaluru</p>
-          <h1>
-            Explore<br />
-            <i>possibility.</i>
-          </h1>
-          <p className="lede">
-            A material & product innovation experience centre for architects and spatial minds shaping space in Bengaluru and beyond.
-          </p>
-          <div className="actions">
-            <a className="button light" href="#playground">
-              Enter Playground <b>↘</b>
-            </a>
-            <Link className="text-link" href="/collections" style={{ color: "#fff" }}>
-              Explore 8 Material Families <span>→</span>
-            </Link>
+          <div key={heroIndex} className="hero-copy-inner">
+            <p className="eyebrow" style={{ color: "#d9d1c7" }}>
+              {currentSlide.eyebrow}
+            </p>
+            <h1>
+              {currentSlide.title}
+              <br />
+              <i>{currentSlide.titleItalic}</i>
+            </h1>
+            <p className="lede">{currentSlide.lede}</p>
+            <div className="actions">
+              {currentSlide.primaryCta.href.startsWith("#") ? (
+                <a className="button light" href={currentSlide.primaryCta.href}>
+                  {currentSlide.primaryCta.label} <b>{currentSlide.primaryCta.icon}</b>
+                </a>
+              ) : (
+                <Link className="button light" href={currentSlide.primaryCta.href}>
+                  {currentSlide.primaryCta.label} <b>{currentSlide.primaryCta.icon}</b>
+                </Link>
+              )}
+
+              <Link
+                className="text-link"
+                href={currentSlide.secondaryCta.href}
+                style={{ color: "#fff" }}
+              >
+                {currentSlide.secondaryCta.label} <span>→</span>
+              </Link>
+            </div>
           </div>
         </div>
 
         <div className="hero-footer-bar">
           <div className="hero-caption">
-            <span className="hero-slide-num">0{heroIndex + 1} — 04</span>
-            <span className="hero-manifesto">
-              Materials stop being samples and start becoming space.
+            <span className="hero-slide-num">0{heroIndex + 1} — 0{HERO_SLIDES.length}</span>
+            <span key={heroIndex} className="hero-manifesto hero-manifesto-animated">
+              {currentSlide.manifesto}
             </span>
           </div>
 
           <div className="hero-controls">
             <div className="hero-pagination">
-              {heroImages.map((_, index) => (
+              {HERO_SLIDES.map((_, index) => (
                 <button
                   type="button"
                   key={index}
@@ -164,7 +227,17 @@ export default function Home() {
                 <em>{tag}</em>
               </div>
               <p>{copy}</p>
-              <Link className="button light" href="/visit" style={{ padding: "10px 14px" }}>
+              <Link
+                className="button light"
+                href="/visit"
+                style={{
+                  padding: "10px 18px",
+                  justifySelf: "center",
+                  textAlign: "center",
+                  justifyContent: "center",
+                  display: "inline-flex",
+                }}
+              >
                 Explore ↗
               </Link>
             </article>
@@ -181,7 +254,7 @@ export default function Home() {
       {/* COLLECTIONS GRID */}
       <section className="collection-section" id="collections">
         <div className="collection-head">
-          <p className="section-number">04 / Material Families</p>
+          <p className="section-number">05 / Material Families</p>
           <h2>
             Eight worlds.<br />
             <i>One collective.</i>
@@ -219,9 +292,15 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="more-collections" style={{ marginTop: "40px", textAlign: "center" }}>
+        {/* COLLECTIONS CATALOG CTA BANNER */}
+        <div className="collections-catalog-banner">
+          <div>
+            <span className="eyebrow" style={{ color: "var(--clay)" }}>The Complete Material Archive</span>
+            <h3>Explore all 8 tactile families & engineering specifications.</h3>
+            <p>Compare surface density, slip resistance ratings, and architectural finish variants.</p>
+          </div>
           <Link className="button dark" href="/collections">
-            Explore Full Material Specifications & Catalog →
+            Open Full Material Catalog ↗
           </Link>
         </div>
       </section>
@@ -238,7 +317,7 @@ export default function Home() {
           />
         </div>
         <div className="home-visit-panel">
-          <p className="eyebrow" style={{ color: "#f7dcd5" }}>06 / Visit the Experience Centre</p>
+          <p className="eyebrow" style={{ color: "#f7dcd5" }}>07 / Visit the Experience Centre</p>
           <h2>
             Made to be<br />
             <i>experienced.</i>

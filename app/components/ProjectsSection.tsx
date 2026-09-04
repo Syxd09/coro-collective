@@ -7,7 +7,7 @@ export function ProjectsSection() {
     <section className="projects-showcase section" id="projects">
       <div className="section-head-flex">
         <div>
-          <p className="section-number">05 / Execution Portfolio</p>
+          <p className="section-number">06 / Execution Portfolio</p>
           <h2>
             Materials made <i>real.</i>
           </h2>

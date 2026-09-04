@@ -18,6 +18,8 @@ export function Nav({ light = false }: { light?: boolean }) {
     return () => window.removeEventListener("scroll", update);
   }, []);
 
+  const isHome = pathname === "/";
+
   const navLinks = [
     { href: "/collections", label: "Collections" },
     { href: "/material-playground", label: "Playground" },
@@ -29,9 +31,9 @@ export function Nav({ light = false }: { light?: boolean }) {
   return (
     <>
       <nav
-        className={`inner-nav ${light ? "pale" : ""} ${
-          scrolled ? "scrolled" : ""
-        }`}
+        className={`inner-nav ${isHome ? "home-nav" : ""} ${
+          isHome && !scrolled ? "transparent-hero" : ""
+        } ${light ? "pale" : ""} ${scrolled ? "scrolled" : ""}`}
       >
         <Link className="wordmark" href="/">
           CORO<span>®</span>

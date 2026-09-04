@@ -82,10 +82,15 @@ export function SampleBoxDrawer() {
             </div>
           ) : (
             <div className="sample-list">
-              <p className="drawer-note">
-                Selected specimens will be packed in custom CORO sample boxes
-                with physical spec sheets.
-              </p>
+              {samples.length >= 4 ? (
+                <div style={{ background: "rgba(169, 85, 59, 0.18)", border: "1px solid var(--clay)", padding: "10px 14px", borderRadius: "4px", fontSize: "12px", color: "#f7dcd5", marginBottom: "16px" }}>
+                  ✦ <strong>Tray Capacity Reached (4/4)</strong>. Curated sample boxes hold 4 specimens for focused tactile review.
+                </div>
+              ) : (
+                <p className="drawer-note">
+                  Selected specimens will be packed in custom CORO sample boxes with physical spec sheets. ({4 - samples.length} slots remaining)
+                </p>
+              )}
               {samples.map((item) => (
                 <div className="sample-card-row" key={item.id}>
                   <div className="sample-thumb">
@@ -162,9 +167,10 @@ export function SampleBoxDrawer() {
                 </p>
 
                 <div className="form-grid">
-                  <label>
-                    Full Name *
+                  <div>
+                    <label htmlFor="sample-req-name">Full Name *</label>
                     <input
+                      id="sample-req-name"
                       required
                       type="text"
                       placeholder="e.g. Ananya Rao"
@@ -173,11 +179,12 @@ export function SampleBoxDrawer() {
                         setFormData({ ...formData, name: e.target.value })
                       }
                     />
-                  </label>
+                  </div>
 
-                  <label>
-                    Architecture Studio / Firm
+                  <div>
+                    <label htmlFor="sample-req-studio">Architecture Studio / Firm</label>
                     <input
+                      id="sample-req-studio"
                       type="text"
                       placeholder="e.g. Studio Earthform"
                       value={formData.studio}
@@ -185,11 +192,12 @@ export function SampleBoxDrawer() {
                         setFormData({ ...formData, studio: e.target.value })
                       }
                     />
-                  </label>
+                  </div>
 
-                  <label>
-                    Work Email *
+                  <div>
+                    <label htmlFor="sample-req-email">Work Email *</label>
                     <input
+                      id="sample-req-email"
                       required
                       type="email"
                       placeholder="ananya@studio.com"
@@ -198,11 +206,12 @@ export function SampleBoxDrawer() {
                         setFormData({ ...formData, email: e.target.value })
                       }
                     />
-                  </label>
+                  </div>
 
-                  <label>
-                    Contact Phone *
+                  <div>
+                    <label htmlFor="sample-req-phone">Contact Phone *</label>
                     <input
+                      id="sample-req-phone"
                       required
                       type="tel"
                       placeholder="+91 98765 43210"
@@ -211,11 +220,12 @@ export function SampleBoxDrawer() {
                         setFormData({ ...formData, phone: e.target.value })
                       }
                     />
-                  </label>
+                  </div>
 
                   <div className="full">
-                    <label>Request Mode</label>
+                    <label htmlFor="sample-req-dispatch">Request Mode</label>
                     <CustomSelect
+                      id="sample-req-dispatch"
                       value={formData.dispatchType}
                       onChange={(val) =>
                         setFormData({ ...formData, dispatchType: val })
@@ -229,9 +239,10 @@ export function SampleBoxDrawer() {
                     />
                   </div>
 
-                  <label className="full">
-                    Project Context & Location
+                  <div className="full">
+                    <label htmlFor="sample-req-notes">Project Context & Location</label>
                     <textarea
+                      id="sample-req-notes"
                       rows={3}
                       placeholder="Tell us about your project location, timeline, or surface square footage..."
                       value={formData.notes}
@@ -239,7 +250,7 @@ export function SampleBoxDrawer() {
                         setFormData({ ...formData, notes: e.target.value })
                       }
                     />
-                  </label>
+                  </div>
                 </div>
 
                 <div className="form-actions">
