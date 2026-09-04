@@ -75,7 +75,7 @@ export function InteriorsSection() {
             </div>
           </div>
 
-          <div className="actions" style={{ marginTop: "28px" }}>
+          <div className="actions" style={{ marginTop: "14px" }}>
             <Link className="button dark" href="/contact">
               Initiate Interior Brief ↗
             </Link>
